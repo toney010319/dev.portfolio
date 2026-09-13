@@ -12,8 +12,9 @@ const Hero = () => {
             <CycleText />
 
             <p className="body-copy mx-auto mt-6 text-center lg:mx-0 lg:text-left">
-              Greetings, fellow digital explorers! I am Anthony, a passionate and innovative developer dedicated to
-              crafting immersive digital experiences. Welcome to my online abode.
+              Web Developer and Frontend Engineer with 3+ years of experience building and maintaining production web
+              applications. Strong focus on React, Next.js, and TypeScript, with hands-on full-stack work across APIs,
+              databases, authentication, and business workflows.
             </p>
 
             <div className="mb-10 mt-10 flex items-center justify-center gap-5 lg:justify-start">
