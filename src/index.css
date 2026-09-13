@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply font-sans text-base leading-relaxed text-[#EFF0F2] antialiased;
+    line-height: 1.65;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply font-display text-3xl font-bold text-[#EFF0F2] md:text-4xl;
+  }
+
+  .subsection-title {
+    @apply font-display text-xl font-bold text-[#EFF0F2] md:text-2xl;
+  }
+
+  .body-copy {
+    @apply max-w-3xl text-base leading-relaxed text-[#EFF0F2] md:text-lg;
+    line-height: 1.65;
+  }
+
+  .meta-text {
+    @apply text-sm text-[#EFF0F2]/80 md:text-base;
+  }
+}
