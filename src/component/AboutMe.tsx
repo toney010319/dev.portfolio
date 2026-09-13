@@ -25,8 +25,6 @@ const techstack = [
   "VScode",
   "Jquery",
   "Shadcn",
-  "Claude-AI",
-  "Chat-GPT",
   "TanstackQuery",
   "Git",
   "RestApi",
@@ -36,6 +34,7 @@ const techstack = [
   "WooCommerce",
   "Elementor",
   "PHP",
+  "Stripe",
 ];
 
 const frontEnd = [
@@ -74,7 +73,7 @@ const backEnd = [
 
 const cmsPlatforms = ["Wordpress", "WooCommerce", "Elementor"];
 
-const toolsAndLibraries = ["Vite", "VScode", "Claude-AI", "Chat-GPT", "Git", "Stripe", "Cursor"];
+const toolsAndLibraries = ["Vite", "VScode", "Git", "Stripe", "Cursor"];
 
 const education = [
   {
@@ -82,14 +81,14 @@ const education = [
     school: "Avion School",
     program: "Software Engineer",
     description:
-      "Full-Stack Web Development Bootcamp focused on front-end and back-end technologies, including HTML, CSS, JavaScript, ReactJS, Ruby, and Ruby on Rails. Gained hands-on experience building real-world web applications and collaborative projects.",
+      "Intensive full-stack web development program covering front-end and back-end technologies, including HTML, CSS, JavaScript, React, Ruby, and Ruby on Rails. Built collaborative, real-world web applications as part of the curriculum.",
   },
   {
     dates: "2018 – 2019",
     school: "Talisay City College",
     program: "Bachelor of Science in Industrial Technology",
     description:
-      "Studied the fundamentals of software engineering, including basic programming concepts and logic development. Gained introductory knowledge in programming languages and their application in technology and industry.",
+      "Coursework in software and technology fundamentals, including programming concepts and applied problem-solving relevant to industry systems.",
   },
 ];
 
@@ -116,9 +115,17 @@ const AboutMe = () => {
   return (
     <section id="about" className="bg-gradient-to-r from-[#10131a] to-[#0f212c] py-16 md:py-20">
       <div className="container mx-auto px-4">
-        <h1 className="section-title mb-12 text-center">
+        <h1 className="section-title mb-8 text-center md:mb-10">
           More <span className="text-[#2EB2D3]">About</span> Me
         </h1>
+
+        <p className="body-copy mx-auto mb-12 max-w-3xl text-center" data-aos="fade-up" data-aos-delay="100">
+          I’m a mid-level Web Developer focused on frontend engineering with React, Next.js, and TypeScript, and
+          comfortable working across the stack when the product needs it. I’ve built and maintained production
+          applications used in real business contexts, role-based platforms, admin workflows, e-commerce, and
+          API-integrated systems with attention to maintainability, security boundaries, and responsive UX.
+        </p>
+
         <div className="flex flex-col gap-12 lg:flex-row lg:gap-14">
           <div data-aos="fade-up" data-aos-delay="150" className="lg:w-1/2">
             <h2 className="subsection-title mb-8 text-center lg:text-left">My Education</h2>
