@@ -5,21 +5,21 @@ import { FacebookIcon, GithubIcon, LinkedinIcon } from "lucide-react";
 
 const Hero = () => {
   return (
-    <div id="profile" className="pt-10 bg-gradient-to-r from-[#10131a] to-[#0f212c]">
-      <div className="container mx-auto px-4 pt-28 lg:px-0">
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
-          <div className="w-full lg:w-2/3 pt-10 lg:pt-20">
+    <section id="profile" className="bg-gradient-to-r from-[#10131a] to-[#0f212c] pt-10">
+      <div className="container mx-auto px-4 pb-16 pt-24 lg:px-0 lg:pb-20 lg:pt-28">
+        <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-start">
+          <div className="w-full pt-6 lg:w-2/3 lg:pt-16">
             <CycleText />
 
-            <p className="text-[#EFF0F2] sm:text-xl text-center lg:text-left max-w-[820px] mt-6">
-              Greetings, fellow digital explorers! I am Anthony, A passionate and innovative developer dedicated to
-              crafting immersive digital experiences. Welcome to my Online abode.
+            <p className="body-copy mx-auto mt-6 text-center lg:mx-0 lg:text-left">
+              Greetings, fellow digital explorers! I am Anthony, a passionate and innovative developer dedicated to
+              crafting immersive digital experiences. Welcome to my online abode.
             </p>
 
-            <div className="mt-10  gap-5 flex justify-center   items-center lg:justify-start mb-10">
+            <div className="mb-10 mt-10 flex items-center justify-center gap-5 lg:justify-start">
               <WorkButton
                 text="Download CV"
-                className="bg-[#2EB2D3] px-7 py-2 text-xl  "
+                className="bg-[#2EB2D3] px-7 py-2 font-display text-lg"
                 href="/images/resume.pdf"
                 download={true}
               />
@@ -30,8 +30,8 @@ const Hero = () => {
                   rel="noopener noreferrer"
                   className="group relative"
                 >
-                  <FacebookIcon className="h-6 w-6 text-[#2EB2D3] hover:cursor-pointer hover:scale-150 ease-in-out duration-200" />
-                  <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                  <FacebookIcon className="h-6 w-6 text-[#2EB2D3] duration-200 ease-in-out hover:scale-150 hover:cursor-pointer" />
+                  <span className="absolute -top-10 left-1/2 -translate-x-1/2 transform whitespace-nowrap rounded bg-gray-800 px-2 py-1 text-sm text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     Facebook
                   </span>
                 </a>
@@ -42,8 +42,8 @@ const Hero = () => {
                   rel="noopener noreferrer"
                   className="group relative"
                 >
-                  <LinkedinIcon className="h-6 w-6 text-[#2EB2D3] hover:cursor-pointer hover:scale-150 ease-in-out duration-200" />
-                  <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                  <LinkedinIcon className="h-6 w-6 text-[#2EB2D3] duration-200 ease-in-out hover:scale-150 hover:cursor-pointer" />
+                  <span className="absolute -top-10 left-1/2 -translate-x-1/2 transform whitespace-nowrap rounded bg-gray-800 px-2 py-1 text-sm text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     LinkedIn
                   </span>
                 </a>
@@ -54,24 +54,24 @@ const Hero = () => {
                   rel="noopener noreferrer"
                   className="group relative"
                 >
-                  <GithubIcon className="h-6 w-6 text-[#2EB2D3] hover:cursor-pointer hover:scale-150 ease-in-out duration-200" />
-                  <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                  <GithubIcon className="h-6 w-6 text-[#2EB2D3] duration-200 ease-in-out hover:scale-150 hover:cursor-pointer" />
+                  <span className="absolute -top-10 left-1/2 -translate-x-1/2 transform whitespace-nowrap rounded bg-gray-800 px-2 py-1 text-sm text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     GitHub
                   </span>
                 </a>
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-1/3 mt-8 lg:mt-0 hidden lg:block  ">
+          <div className="mt-8 hidden w-full lg:mt-0 lg:block lg:w-1/3">
             <img
               src={photo}
-              alt="photo"
-              className="rounded-md w-full h-auto max-w-[300px] md:max-w-[600px] mx-auto   "
+              alt="Anthony Bautista"
+              className="mx-auto h-auto w-full max-w-[300px] rounded-md md:max-w-[600px]"
             />
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
