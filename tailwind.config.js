@@ -4,6 +4,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Source Sans 3"', "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ['"Sora"', "ui-sans-serif", "system-ui", "sans-serif"],
+      },
       transitionTimingFunction: {
         slow: "cubic-bezier(.405, 0, .025, 1)",
         "minor-spring": "cubic-bezier(0.18,0.89,0.82,1.04)",
