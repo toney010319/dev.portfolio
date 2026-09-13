@@ -1,14 +1,9 @@
- 
-
 const Footer = () => {
   return (
-      <>
-      <div className='bg-gray-800 text-white text-center p-4'>
-        <p className='text-sm'>© 2026 Anthony Dev. All rights reserved.</p>
-        
-      </div>
-      </>
-  )
-}
+    <footer className="bg-[#0c0e14] py-6 text-center">
+      <p className="font-sans text-sm text-[#EFF0F2]/70">© 2026 Anthony Dev. All rights reserved.</p>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;
