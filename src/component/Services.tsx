@@ -7,16 +7,12 @@ const Services = () => {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div data-aos="fade-up" data-aos-delay="150" className="flex flex-col justify-center">
             <h1 className="section-title mb-4">
-              MY <span className="text-[#2EB2D3]">SERVICE</span>
+              What I <span className="text-[#2EB2D3]">Build</span>
             </h1>
             <p className="body-copy pt-2">
-              As a versatile developer and designer, I offer a full spectrum of services to help businesses build,
-              enhance, and optimize their digital presence. With expertise as a front-end and back-end developer, I
-              create seamless full-stack web applications that are both powerful and efficient. My skills in UI/UX
-              design ensure that these applications are not only functional but also intuitive and user-friendly.
-              Additionally, I specialize in web optimization, improving site performance, speed, and overall user
-              experience. I am committed to delivering high-quality, scalable solutions that meet the unique needs of
-              each project.
+              I help teams ship and maintain production-ready web applications especially modern React/Next.js
+              frontends and full-stack business systems. That includes dashboards, SaaS-style workflows, e-commerce
+              experiences, and API-driven apps where reliability, responsiveness, and clear UX matter.
             </p>
           </div>
           <div
@@ -27,33 +23,33 @@ const Services = () => {
             <div className="w-full space-y-4 sm:w-1/2">
               <FlipCard
                 variant="frontend"
-                description=" I specialize in building fast, mobile-responsive websites with a focus on cross-browser compatibility and performance optimization. With a strong foundation in UX design, I create user-centered interfaces that deliver both functionality and an intuitive user experience."
+                description="I build responsive, mobile-first interfaces with React, Next.js, and TypeScript reusable components, API-driven pages, and production UI that holds up across browsers and devices."
                 rotate="y"
-                subtitle="Frontend Developer"
-                title="Frontend Developer"
+                subtitle="Frontend Engineering"
+                title="Frontend Engineering"
                 className="w-full"
               />
               <FlipCard
                 variant="uiux"
-                description=" I bring user-focused designs to life through clean, responsive, and interactive front-end code. With a strong background in building e-commerce and system-based websites, I work primarily with ReactJS and Tailwind CSS, to create seamless user experiences across all devices. My goal is to blend design and functionality to build intuitive and engaging web interfaces."
+                description="I turn Figma and product designs into usable, responsive interfaces for e-commerce and business systems. Working primarily with React and Tailwind CSS, I focus on clear workflows and consistent experiences across screen sizes."
                 rotate="y"
-                subtitle="UI/UX Developer"
-                title="UI/UX Developer"
+                subtitle="Responsive UI Engineering"
+                title="Responsive UI Engineering"
                 className="w-full "
               />
             </div>
             <div className="w-full space-y-4 sm:w-1/2 lg:mt-10">
               <FlipCard
                 variant="backend"
-                description="I am a backend developer skilled in Node.js with the Express.js framework, MongoDB, as well as Ruby and the Ruby on Rails framework with PostgreSQL. I am committed to developing robust, scalable, and secure server-side applications that seamlessly integrate with front-end technologies."
+                description="I build and integrate backend pieces with Node.js, Express, and REST APIs including authentication, authorization, and RBAC backed by MongoDB, PostgreSQL, or Supabase. I also have experience with Ruby on Rails and PostgreSQL when the stack calls for it."
                 rotate="y"
-                subtitle="Backend Developer"
-                title="Backend Developer"
+                subtitle="Backend & APIs"
+                title="Backend & APIs"
                 className="w-full"
               />
               <FlipCard
                 variant="optimization"
-                description="I optimize websites using GTmetrix, PageSpeed Insights, and Lighthouse by converting images to WebP, lazy loading content, applying CDN caching, and minimizing assets. I also use Redis for server-side caching and TanStack Query for front-end data caching. These improvements boost load speed, SEO, and overall user experience."
+                description="I improve site performance using GTmetrix, PageSpeed Insights, and Lighthouse WebP images, lazy loading, CDN caching, and asset minimization plus TanStack Query for efficient front-end data caching to support faster loads and a better user experience."
                 rotate="y"
                 subtitle="Web Optimization"
                 title="Web Optimization"
