@@ -14,8 +14,8 @@ export default function CycleText() {
   }, [total]);
 
   return (
-    <div className=" text-center lg:text-left ">
-      <span className="font-mono     lg:text-5xl  sm:text-4xl  text-2xl  font-extrabold text-[#EFF0F2]">
+    <div className="text-center lg:text-left">
+      <span className="font-mono text-2xl font-extrabold text-[#EFF0F2] sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
         Anthony Bautista <br />
         I'm
         <AnimatePresence mode="wait">
@@ -25,7 +25,7 @@ export default function CycleText() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.08 }}
-            className="inline-block font-mono     font-extrabold text-[#2EB2D3]"
+            className="inline-block font-mono font-extrabold text-[#2EB2D3]"
           >
             &nbsp;{words[index]}&nbsp;
           </motion.h1>
