@@ -76,6 +76,23 @@ const cmsPlatforms = ["Wordpress", "WooCommerce", "Elementor"];
 
 const toolsAndLibraries = ["Vite", "VScode", "Claude-AI", "Chat-GPT", "Git", "Stripe", "Cursor"];
 
+const education = [
+  {
+    dates: "2023 – 2024",
+    school: "Avion School",
+    program: "Software Engineer",
+    description:
+      "Full-Stack Web Development Bootcamp focused on front-end and back-end technologies, including HTML, CSS, JavaScript, ReactJS, Ruby, and Ruby on Rails. Gained hands-on experience building real-world web applications and collaborative projects.",
+  },
+  {
+    dates: "2018 – 2019",
+    school: "Talisay City College",
+    program: "Bachelor of Science in Industrial Technology",
+    description:
+      "Studied the fundamentals of software engineering, including basic programming concepts and logic development. Gained introductory knowledge in programming languages and their application in technology and industry.",
+  },
+];
+
 const AboutMe = () => {
   const [activeTab, setActiveTab] = useState<number | null>(0);
 
@@ -97,46 +114,27 @@ const AboutMe = () => {
   };
 
   return (
-    <div id="about" className="py-10 bg-gradient-to-r from-[#10131a] to-[#0f212c]">
-      <div className="container mx-auto px-4 ">
-        <h1 className="text-[#EFF0F2] text-3xl md:text-4xl lg:text-5xl font-bold mb-8 text-center">
+    <section id="about" className="bg-gradient-to-r from-[#10131a] to-[#0f212c] py-16 md:py-20">
+      <div className="container mx-auto px-4">
+        <h1 className="section-title mb-12 text-center">
           More <span className="text-[#2EB2D3]">About</span> Me
         </h1>
-        <div className="flex flex-col lg:flex-row gap-10">
-          <div data-aos="fade-up" data-aos-delay="150" className="text-[#EFF0F2] lg:w-1/2">
-            <h2 className="text-[#EFF0F2] text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-center">My Education</h2>
-            <div className="mb-8">
-              <p className="text-base md:text-lg lg:text-xl pt-3 leading-relaxed tracking-wide">2023 - 2024</p>
-              <p className="text-[#2EB2D3] font-bold text-base md:text-lg lg:text-xl leading-relaxed tracking-wide">
-                Avion School
-              </p>
-              <p className="text-[#2EB2D3] font-bold text-base md:text-lg lg:text-xl leading-relaxed tracking-wide">
-                Software Engineer
-              </p>
-              <p className="text-base md:text-lg lg:text-xl pt-3 leading-relaxed tracking-wide">
-                Full-Stack Web Development Bootcamp
-                <br />a coding bootcamp focused on front-end and back-end technologies, including HTML, CSS, JavaScript,
-                ReactJS, Ruby, and Ruby on Rails. Gained hands-on experience by building real-world web applications and
-                collaborative projects.
-              </p>
-            </div>
-            <div>
-              <p className="text-base md:text-lg lg:text-xl pt-3 leading-relaxed tracking-wide">2018 - 2019</p>
-              <p className="text-[#2EB2D3] font-bold text-base md:text-lg lg:text-xl leading-relaxed tracking-wide">
-                Talisay City College
-              </p>
-              <p className="text-[#2EB2D3] font-bold text-base md:text-lg lg:text-xl leading-relaxed tracking-wide">
-                Bachelor of Science in Industrial Technology
-              </p>
-              <p className="text-base md:text-lg lg:text-xl pt-3 leading-relaxed tracking-wide">
-                Studied the fundamentals of software engineering, including basic programming concepts and logic
-                development. Gained introductory knowledge in programming languages and their application in technology
-                and industry.
-              </p>
+        <div className="flex flex-col gap-12 lg:flex-row lg:gap-14">
+          <div data-aos="fade-up" data-aos-delay="150" className="lg:w-1/2">
+            <h2 className="subsection-title mb-8 text-center lg:text-left">My Education</h2>
+            <div className="space-y-8">
+              {education.map((item) => (
+                <article key={item.school} className="text-left">
+                  <p className="meta-text">{item.dates}</p>
+                  <h3 className="mt-1 font-display text-lg font-semibold text-[#2EB2D3] md:text-xl">{item.school}</h3>
+                  <p className="mt-0.5 font-display text-base font-semibold text-[#EFF0F2]">{item.program}</p>
+                  <p className="body-copy mt-3 max-w-none text-base md:text-base">{item.description}</p>
+                </article>
+              ))}
             </div>
           </div>
-          <div data-aos="fade-up" data-aos-delay="400" className="text-center lg:w-1/2">
-            <h2 className="text-[#EFF0F2] text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-center">Tech Stack</h2>
+          <div data-aos="fade-up" data-aos-delay="400" className="w-full text-center lg:w-1/2">
+            <h2 className="subsection-title mb-4 md:mb-6">Tech Stack</h2>
 
             <ShiftTabs
               activeTab={activeTab}
@@ -144,21 +142,27 @@ const AboutMe = () => {
               items={["All", "Frontend", "Backend", "Tools", "CMS"]}
               onTabClick={(tab: number | null) => setActiveTab(tab)}
             />
-            <div className="flex flex-wrap justify-center items-center gap-2 p-4 md:p-6 lg:p-8">
-              {renderTechStack().map((item, index) => (
-                <p
-                  key={index}
-                  className={`  transition duration-300 ease-in-out shadow-md hover:shadow-[#2EB2D3] p-2 hover:cursor-pointer bg-[#2eb2d344] text-[#EFF0F2] font-bold border-[#2EB2D3] border-2 rounded-md flex flex-row items-center gap-2 text-sm md:text-base`}
+            <div className="mt-4 grid grid-cols-2 gap-1.5 px-1 py-3 sm:grid-cols-3 sm:gap-2 sm:px-2 md:mt-6 md:grid-cols-3 md:gap-2.5 md:p-6 lg:grid-cols-4 lg:p-8">
+              {renderTechStack().map((item) => (
+                <span
+                  key={item}
+                  className="inline-flex min-w-0 items-center justify-start gap-1.5 rounded-md border border-[#2EB2D3]/80 bg-[#2eb2d344] px-2 py-1.5 text-xs font-semibold text-[#EFF0F2] transition duration-300 ease-in-out hover:cursor-pointer hover:border-[#2EB2D3] hover:shadow-[0_0_0_1px_#2EB2D3] sm:gap-2 sm:px-2.5 sm:text-sm md:text-base"
                 >
-                  <img src={`/images/${item}.svg`} width={20} height={20} alt={`${item} LOGO`} />
-                  {item}
-                </p>
+                  <img
+                    src={`/images/${item}.svg`}
+                    width={16}
+                    height={16}
+                    alt=""
+                    className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4 md:h-5 md:w-5"
+                  />
+                  <span className="truncate">{item}</span>
+                </span>
               ))}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
