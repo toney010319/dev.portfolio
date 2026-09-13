@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function CycleText() {
-  const words = ["Front-End Developer", "Back-End Developer", "Full-Stack Developer", "UI/UX Developer"];
+  const words = ["Frontend Engineer", "Full-Stack Web Developer", "Web Developer", ];
   const [index, setIndex] = useState(0);
 
   const total = words.length;
