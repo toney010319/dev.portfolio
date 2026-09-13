@@ -24,7 +24,7 @@ const experiences: ExperienceEntry[] = [
     tech: ["Next.js", "TypeScript", "Supabase", "Drizzle", "TanStack Query", "Zod", "Tailwind", "Stripe"],
   },
   {
-    company: "CBS OffShore",
+    company: "Media Communication Corp.",
     role: "Front-End Developer",
     location: "Remote",
     dates: "March 2024 – July 2025",
