@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import "./App.css";
 import AboutMe from "./component/AboutMe";
+import ContactUs from "./component/Contactus";
 import Experience from "./component/Experience";
 import Footer from "./component/Footer";
 import Hero from "./component/Hero";
@@ -26,7 +27,7 @@ function App() {
       <AboutMe />
       <Experience />
       <Project />
-      {/* <ContactUs/> */}
+      <ContactUs />
       <Footer />
     </>
   );
