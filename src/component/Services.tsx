@@ -53,7 +53,7 @@ const Services = () => {
               />
               <FlipCard
                 variant="optimization"
-                description="I optimize websites using GTmetrix, PageSpeed Insights, and Lighthouse by converting images to WebP, lazy loading content, applying CDN caching, and minimizing assets. These improvements boost load speed, SEO, and overall user experience."
+                description="I optimize websites using GTmetrix, PageSpeed Insights, and Lighthouse by converting images to WebP, lazy loading content, applying CDN caching, and minimizing assets. I also use Redis for server-side caching and TanStack Query for front-end data caching. These improvements boost load speed, SEO, and overall user experience."
                 rotate="y"
                 subtitle="Web Optimization"
                 title="Web Optimization"
