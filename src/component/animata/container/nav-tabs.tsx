@@ -1,24 +1,23 @@
 "use client";
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../../libs/utils";
 
 interface TabProps {
   text: string;
   selected: boolean;
-  setSelected: React.Dispatch<React.SetStateAction<string>>;
-  sectionId: string;  
+  sectionId: string;
   isMobile: boolean;
+  onSelect: (sectionId: string) => void;
 }
 
 interface NavTabsProps {
-  tabs: { label: string; sectionId: string }[];  
+  tabs: { label: string; sectionId: string }[];
+  activeSectionId: string;
   isMobile?: boolean;
+  onSectionSelect?: (sectionId: string) => void;
 }
 
-export default function NavTabs({ tabs, isMobile = false }: NavTabsProps) {
-  const [selected, setSelected] = useState<string>(tabs[0].label);
-
+export default function NavTabs({ tabs, activeSectionId, isMobile = false, onSectionSelect }: NavTabsProps) {
   return (
     <div
       className={cn(
@@ -29,26 +28,26 @@ export default function NavTabs({ tabs, isMobile = false }: NavTabsProps) {
       {tabs.map((tab) => (
         <Tab
           text={tab.label}
-          selected={selected === tab.label}
-          setSelected={setSelected}
+          selected={activeSectionId === tab.sectionId}
           sectionId={tab.sectionId}
-          key={tab.label}
+          key={tab.sectionId}
           isMobile={isMobile}
+          onSelect={onSectionSelect ?? (() => {})}
         />
       ))}
     </div>
   );
 }
 
-const Tab = ({ text, selected, setSelected, sectionId, isMobile }: TabProps) => {
+const Tab = ({ text, selected, sectionId, isMobile, onSelect }: TabProps) => {
   const handleClick = () => {
-    setSelected(text);
+    onSelect(sectionId);
     const element = document.getElementById(sectionId);
-    if (element) { 
-        window.scrollTo({
-            top: element.offsetTop - 30,  
-            behavior: "smooth"
-        });
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 30,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -56,8 +55,8 @@ const Tab = ({ text, selected, setSelected, sectionId, isMobile }: TabProps) => 
     <button
       onClick={handleClick}
       className={cn(
-        "relative rounded-md p-2 text-sm transition-all hover:bg-[#2eb2d32a] hover:border-[#2EB2D3]",
-        selected ? "text-white font-bold" : "text-[#EFF0F2] hover:font-black",
+        "relative rounded-md p-2 text-sm transition-all hover:border-[#2EB2D3] hover:bg-[#2eb2d32a]",
+        selected ? "font-bold text-white" : "text-[#EFF0F2] hover:font-black",
         isMobile ? "w-full text-left" : "min-w-20"
       )}
     >
@@ -68,7 +67,7 @@ const Tab = ({ text, selected, setSelected, sectionId, isMobile }: TabProps) => 
           transition={{ type: "spring", duration: 0.5 }}
           className={cn(
             "absolute inset-0 rounded-sm bg-gradient-to-t from-[#087796] to-[#0096ba]",
-            isMobile ? "h-full w-1 left-0" : ""
+            isMobile ? "left-0 h-full w-1" : ""
           )}
         />
       )}

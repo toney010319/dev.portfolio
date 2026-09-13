@@ -1,22 +1,60 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NavTabs from "./animata/container/nav-tabs";
 
 import { Menu, X } from "lucide-react";
 
+const tabs = [
+  { label: "Profile", sectionId: "profile" },
+  { label: "Services", sectionId: "services" },
+  { label: "About Me", sectionId: "about" },
+  { label: "Experience", sectionId: "experience" },
+  { label: "Projects", sectionId: "project" },
+];
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSectionId, setActiveSectionId] = useState(tabs[0].sectionId);
+  const sectionRatios = useRef<Record<string, number>>({});
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const tabs = [
-    { label: "Profile", sectionId: "profile" },
-    { label: "Services", sectionId: "services" },
-    { label: "About Us", sectionId: "about" },
-    { label: "Experience", sectionId: "experience" },
-    { label: "Projects ", sectionId: "project" },
-  ];
+  useEffect(() => {
+    const sectionIds = tabs.map((tab) => tab.sectionId);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          sectionRatios.current[entry.target.id] = entry.intersectionRatio;
+        });
+
+        let mostVisibleId = sectionIds[0];
+        let highestRatio = 0;
+
+        for (const id of sectionIds) {
+          const ratio = sectionRatios.current[id] ?? 0;
+          if (ratio > highestRatio) {
+            highestRatio = ratio;
+            mostVisibleId = id;
+          }
+        }
+
+        if (highestRatio > 0) {
+          setActiveSectionId(mostVisibleId);
+        }
+      },
+      {
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+      }
+    );
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <nav className="bg-[#10131A] fixed top-0 left-0 right-0 z-50">
@@ -29,7 +67,11 @@ const Navbar = () => {
             </h1>
           </div>
           <div className="hidden md:block">
-            <NavTabs tabs={tabs} />
+            <NavTabs
+              tabs={tabs}
+              activeSectionId={activeSectionId}
+              onSectionSelect={() => setIsMenuOpen(false)}
+            />
           </div>
           <div className="hidden md:block">
             {/* <WorkButton
@@ -56,7 +98,12 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <NavTabs tabs={tabs} isMobile={true} />
+            <NavTabs
+              tabs={tabs}
+              isMobile={true}
+              activeSectionId={activeSectionId}
+              onSectionSelect={() => setIsMenuOpen(false)}
+            />
           </div>
           {/* <div className="px-2 py-3">
             <WorkButton

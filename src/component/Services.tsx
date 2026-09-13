@@ -1,5 +1,4 @@
 import FlipCard from "./animata/container/flip-card";
-import frontend from "../assets/front.jpg";
 
 const Services = () => {
   return (
@@ -27,16 +26,16 @@ const Services = () => {
           >
             <div className="w-full space-y-4 sm:w-1/2">
               <FlipCard
+                variant="frontend"
                 description=" I specialize in building fast, mobile-responsive websites with a focus on cross-browser compatibility and performance optimization. With a strong foundation in UX design, I create user-centered interfaces that deliver both functionality and an intuitive user experience."
-                image={frontend}
                 rotate="y"
                 subtitle="Frontend Developer"
                 title="Frontend Developer"
                 className="w-full"
               />
               <FlipCard
+                variant="uiux"
                 description=" I bring user-focused designs to life through clean, responsive, and interactive front-end code. With a strong background in building e-commerce and system-based websites, I work primarily with ReactJS and Tailwind CSS, to create seamless user experiences across all devices. My goal is to blend design and functionality to build intuitive and engaging web interfaces."
-                image={frontend}
                 rotate="y"
                 subtitle="UI/UX Developer"
                 title="UI/UX Developer"
@@ -45,16 +44,16 @@ const Services = () => {
             </div>
             <div className="w-full space-y-4 sm:w-1/2 lg:mt-10">
               <FlipCard
+                variant="backend"
                 description="I am a backend developer skilled in Node.js with the Express.js framework, MongoDB, as well as Ruby and the Ruby on Rails framework with PostgreSQL. I am committed to developing robust, scalable, and secure server-side applications that seamlessly integrate with front-end technologies."
-                image={frontend}
                 rotate="y"
                 subtitle="Backend Developer"
                 title="Backend Developer"
                 className="w-full"
               />
               <FlipCard
+                variant="optimization"
                 description="I optimize websites using GTmetrix, PageSpeed Insights, and Lighthouse by converting images to WebP, lazy loading content, applying CDN caching, and minimizing assets. These improvements boost load speed, SEO, and overall user experience."
-                image={frontend}
                 rotate="y"
                 subtitle="Web Optimization"
                 title="Web Optimization"
