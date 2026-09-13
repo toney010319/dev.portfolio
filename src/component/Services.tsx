@@ -3,31 +3,29 @@ import frontend from "../assets/front.jpg";
 
 const Services = () => {
   return (
-    <div id="services" className="py-10 bg-[#10131a]">
+    <section id="services" className="bg-[#10131a] py-16 md:py-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 ">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div data-aos="fade-up" data-aos-delay="150" className="flex flex-col justify-center">
-            <h1 className="text-[#EFF0F2] text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            <h1 className="section-title mb-4">
               MY <span className="text-[#2EB2D3]">SERVICE</span>
             </h1>
-            <div className="text-[#EFF0F2]">
-              <p className="text-base md:text-lg lg:text-xl pt-3 leading-relaxed tracking-wide">
-                As a versatile developer and designer, I offer a full spectrum of services to help businesses build,
-                enhance, and optimize their digital presence. With expertise as a front-end and back-end developer, I
-                create seamless full-stack web applications that are both powerful and efficient. My skills in UI/UX
-                design ensure that these applications are not only functional but also intuitive and user-friendly.
-                Additionally, I specialize in web optimization, improving site performance, speed, and overall user
-                experience. I am committed to delivering high-quality, scalable solutions that meet the unique needs of
-                each project.
-              </p>
-            </div>
+            <p className="body-copy pt-2">
+              As a versatile developer and designer, I offer a full spectrum of services to help businesses build,
+              enhance, and optimize their digital presence. With expertise as a front-end and back-end developer, I
+              create seamless full-stack web applications that are both powerful and efficient. My skills in UI/UX
+              design ensure that these applications are not only functional but also intuitive and user-friendly.
+              Additionally, I specialize in web optimization, improving site performance, speed, and overall user
+              experience. I am committed to delivering high-quality, scalable solutions that meet the unique needs of
+              each project.
+            </p>
           </div>
           <div
             data-aos="fade-up"
             data-aos-delay="400"
-            className=" flex flex-col sm:flex-row justify-between items-center gap-4 mt-8 lg:mt-0"
+            className="mt-8 flex flex-col items-center justify-between gap-4 sm:flex-row lg:mt-0"
           >
-            <div className="w-full sm:w-1/2 space-y-4">
+            <div className="w-full space-y-4 sm:w-1/2">
               <FlipCard
                 description=" I specialize in building fast, mobile-responsive websites with a focus on cross-browser compatibility and performance optimization. With a strong foundation in UX design, I create user-centered interfaces that deliver both functionality and an intuitive user experience."
                 image={frontend}
@@ -45,7 +43,7 @@ const Services = () => {
                 className="w-full "
               />
             </div>
-            <div className="w-full sm:w-1/2 space-y-4 lg:mt-10">
+            <div className="w-full space-y-4 sm:w-1/2 lg:mt-10">
               <FlipCard
                 description="I am a backend developer skilled in Node.js with the Express.js framework, MongoDB, as well as Ruby and the Ruby on Rails framework with PostgreSQL. I am committed to developing robust, scalable, and secure server-side applications that seamlessly integrate with front-end technologies."
                 image={frontend}
@@ -66,7 +64,7 @@ const Services = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
