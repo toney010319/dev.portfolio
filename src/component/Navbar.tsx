@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import NavTabs from "./animata/container/nav-tabs";
-
+import WorkButton from "./animata/container/work-button";
 import { Menu, X } from "lucide-react";
 
 const tabs = [
@@ -10,6 +10,16 @@ const tabs = [
   { label: "Experience", sectionId: "experience" },
   { label: "Projects", sectionId: "project" },
 ];
+
+const scrollToContact = () => {
+  const element = document.getElementById("contact");
+  if (element) {
+    window.scrollTo({
+      top: element.offsetTop - 30,
+      behavior: "smooth",
+    });
+  }
+};
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,9 +67,9 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-[#10131A] fixed top-0 left-0 right-0 z-50">
+    <nav className="fixed left-0 right-0 top-0 z-50 bg-[#10131A]">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <h1 className="font-display text-xl font-bold text-[#EFF0F2] md:text-2xl">
               {"<"}
@@ -74,19 +84,11 @@ const Navbar = () => {
             />
           </div>
           <div className="hidden md:block">
-            {/* <WorkButton
+            <WorkButton
               text="Contact"
               className="bg-gradient-to-t from-[#087796] to-[#0096ba] px-5 py-2 text-sm md:text-base"
-              onClick={() => {
-                const element = document.getElementById("contact");
-                if (element) {
-                  window.scrollTo({
-            top: element.offsetTop - 30,  
-            behavior: "smooth"
-        });
-                }
-              }}
-            /> */}
+              onClick={scrollToContact}
+            />
           </div>
           <div className="md:hidden">
             <button onClick={toggleMenu} className="text-[#EFF0F2] hover:text-[#2EB2D3] focus:outline-none">
@@ -97,7 +99,7 @@ const Navbar = () => {
       </div>
       {isMenuOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             <NavTabs
               tabs={tabs}
               isMobile={true}
@@ -105,21 +107,16 @@ const Navbar = () => {
               onSectionSelect={() => setIsMenuOpen(false)}
             />
           </div>
-          {/* <div className="px-2 py-3">
+          <div className="px-2 py-3">
             <WorkButton
               text="Contact"
-              className="bg-gradient-to-t from-[#087796] to-[#0096ba] px-5 py-2 text-sm w-full"
-               onClick={() => {
-                const element = document.getElementById("contact");
-                if (element) {
-                 window.scrollTo({
-                  top: element.offsetTop - 30,  
-                  behavior: "smooth"
-                });
-                }
+              className="w-full bg-gradient-to-t from-[#087796] to-[#0096ba] px-5 py-2 text-sm"
+              onClick={() => {
+                setIsMenuOpen(false);
+                scrollToContact();
               }}
             />
-          </div> */}
+          </div>
         </div>
       )}
     </nav>
