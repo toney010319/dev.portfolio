@@ -71,10 +71,10 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <h1 className="font-display text-xl font-bold text-[#EFF0F2] md:text-2xl">
+            <p className="font-display text-xl font-bold text-[#EFF0F2] md:text-2xl">
               {"<"}
               <span className="text-[#2EB2D3]">A</span>nthony{"/>"}
-            </h1>
+            </p>
           </div>
           <div className="hidden md:block">
             <NavTabs
