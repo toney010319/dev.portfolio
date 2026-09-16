@@ -71,9 +71,9 @@ const Project = () => {
   return (
     <section id="project" className="bg-[#10131a] py-16 md:py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="section-title mb-10 text-center md:mb-12">
+        <h2 className="section-title mb-10 text-center md:mb-12">
           Selected <span className="text-[#2EB2D3]">Projects</span>
-        </h1>
+        </h2>
         <div className="mx-auto grid max-w-6xl auto-rows-fr grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
           {projects.map((project, index) => {
             const visibleTech = project.Technologies.slice(0, CARD_TECH_LIMIT);
