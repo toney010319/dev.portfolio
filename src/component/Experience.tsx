@@ -21,7 +21,7 @@ const experiences: ExperienceEntry[] = [
       "Applied Zod validation for scalable forms and Drizzle schemas for type-safe database management.",
       "Converted Figma designs into responsive, cross-browser, mobile-friendly interfaces.",
     ],
-    tech: ["Next.js", "TypeScript", "Supabase", "Drizzle", "TanStack Query", "Zod", "Tailwind", "Stripe"],
+    tech: ["Next.js", "TypeScript", "Supabase", "Drizzle", "TanStack Query", "Zod", "Tailwind", "Stripe", "Twilio", "Resend"],
   },
   {
     company: "Media Communication Corp.",

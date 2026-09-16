@@ -20,6 +20,9 @@ const projects: ProjectItem[] = [
       "TanstackQuery",
       "Zod",
       "Zustand",
+      "Twilio",
+      "Resend",
+      "Stripe",
     ],
   },
   {
@@ -36,7 +39,15 @@ const projects: ProjectItem[] = [
       "An e-commerce storefront where customers add products to cart, place multi-order purchases with subscription options, and complete checkout via PayPal or debit card. I converted Figma prototypes into responsive, mobile-first production UI.",
     image: "/images/ecommerce.jpg",
     link: "https://shop.esaverwatt.com",
-    Technologies: ["HTML", "Bootstrap", "CSS", "Jquery", ".NET"],
+    Technologies: ["HTML", "Bootstrap", "CSS", "Jquery", ".NET", "Konnektive", "Gtag", "Klaviyo"],
+  },
+  {
+    title: "CamHandy",
+    description:
+      "An e-commerce storefront for CamHandy dash cameras where customers choose product bundles, add accessories to cart, and complete checkout. I converted Figma prototypes into a responsive, mobile-first production UI.",
+    image: "/images/camhandy.png",
+    link: "https://shop.trycamhandy.com/",
+    Technologies: ["HTML", "Bootstrap", "CSS", "Jquery", ".NET", "Konnektive", "Gtag", "Klaviyo"],
   },
   {
     title: "SNAPGRAM",

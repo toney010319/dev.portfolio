@@ -73,7 +73,18 @@ const backEnd = [
 
 const cmsPlatforms = ["Wordpress", "WooCommerce", "Elementor"];
 
-const toolsAndLibraries = ["Vite", "VScode", "Git", "Stripe", "Cursor"];
+const toolsAndLibraries = [
+  "Vite",
+  "VScode",
+  "Git",
+  "Stripe",
+  "Cursor",
+  "Konnektive",
+  "Gtag",
+  "Klaviyo",
+  "Twilio",
+  "Resend",
+];
 
 const education = [
   {
