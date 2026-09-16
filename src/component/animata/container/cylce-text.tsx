@@ -15,13 +15,15 @@ export default function CycleText() {
 
   return (
     <div className="text-center lg:text-left">
-      <span className="font-mono text-2xl font-extrabold leading-tight text-[#EFF0F2] sm:text-4xl lg:text-[2.75rem]">
-        Anthony Bautista <br />
+      <h1 className="font-mono text-2xl font-extrabold leading-tight text-[#EFF0F2] sm:text-4xl lg:text-[2.75rem]">
+        Anthony Bautista
+      </h1>
+      <p className="mt-1 font-mono text-2xl font-extrabold leading-tight text-[#EFF0F2] sm:text-4xl lg:text-[2.75rem]">
         {/* Mobile: reserve 2-line height so wrap doesn't shift layout. Desktop: original inline flow. */}
         <span className="inline-flex min-h-[2.75em] w-full flex-wrap items-baseline justify-center lg:min-h-0 lg:w-auto lg:justify-start">
           I&apos;m
           <AnimatePresence mode="wait">
-            <motion.h1
+            <motion.span
               key={`words_${index}`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -30,10 +32,10 @@ export default function CycleText() {
               className="inline-block font-mono font-extrabold text-[#2EB2D3]"
             >
               &nbsp;{words[index]}&nbsp;
-            </motion.h1>
+            </motion.span>
           </AnimatePresence>
         </span>
-      </span>
+      </p>
     </div>
   );
 }
