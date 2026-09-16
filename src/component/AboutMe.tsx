@@ -115,9 +115,9 @@ const AboutMe = () => {
   return (
     <section id="about" className="bg-gradient-to-r from-[#10131a] to-[#0f212c] py-16 md:py-20">
       <div className="container mx-auto px-4">
-        <h1 className="section-title mb-8 text-center md:mb-10">
+        <h2 className="section-title mb-8 text-center md:mb-10">
           More <span className="text-[#2EB2D3]">About</span> Me
-        </h1>
+        </h2>
 
         <p className="body-copy mx-auto mb-12 max-w-3xl text-center" data-aos="fade-up" data-aos-delay="100">
           I’m a mid-level Web Developer focused on frontend engineering with React, Next.js, and TypeScript, and
