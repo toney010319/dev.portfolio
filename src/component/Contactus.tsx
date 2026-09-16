@@ -46,9 +46,9 @@ const ContactUs = () => {
     >
       <div className="container mx-auto max-w-2xl">
         <div className="mb-10 text-center md:mb-12">
-          <h1 className="section-title mb-4">
+          <h2 className="section-title mb-4">
             Get in <span className="text-[#2EB2D3]">Touch</span>
-          </h1>
+          </h2>
           <p className="body-copy mx-auto max-w-xl">
             Open to frontend and full-stack web roles, as well as project work on production React/Next.js and business
             applications. Reach out through any of the channels below.
