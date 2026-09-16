@@ -43,9 +43,9 @@ const Experience = () => {
   return (
     <section id="experience" className="bg-gradient-to-r from-[#10131a] to-[#0f212c] py-16 md:py-20">
       <div className="container mx-auto px-4">
-        <h1 className="section-title mb-12 text-center">
+        <h2 className="section-title mb-12 text-center">
           Professional <span className="text-[#2EB2D3]">Experience</span>
-        </h1>
+        </h2>
 
         <div className="mx-auto max-w-3xl">
           <ol className="relative space-y-12 border-l border-[#2EB2D3]/40 pl-8 md:pl-10">
