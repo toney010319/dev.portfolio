@@ -65,7 +65,7 @@ export default function FlipCard({
           )}
         >
           <div className="flex h-full flex-col gap-2 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-            <h1 className="font-display text-xl font-bold text-white">{subtitle}</h1>
+            <h3 className="font-display text-xl font-bold text-white">{subtitle}</h3>
             <p className="mt-1 border-t border-[#2EB2D3]/30 py-4 text-sm font-medium leading-relaxed text-[#EFF0F2] md:text-base">
               {description}
             </p>
