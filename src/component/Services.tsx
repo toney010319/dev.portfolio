@@ -6,9 +6,9 @@ const Services = () => {
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div data-aos="fade-up" data-aos-delay="150" className="flex flex-col justify-center">
-            <h1 className="section-title mb-4">
+            <h2 className="section-title mb-4">
               What I <span className="text-[#2EB2D3]">Build</span>
-            </h1>
+            </h2>
             <p className="body-copy pt-2">
               I help teams ship and maintain production-ready web applications especially modern React/Next.js
               frontends and full-stack business systems. That includes dashboards, SaaS-style workflows, e-commerce
