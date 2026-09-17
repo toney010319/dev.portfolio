@@ -38,13 +38,13 @@ export default function ProjectDetailOverlay({
     const previousBodyPadding = body.style.paddingRight;
     const previousScrollLockPad = documentElement.style.getPropertyValue("--scroll-lock-pad");
 
-    const gutter = window.innerWidth - documentElement.clientWidth;
+    const scrollbarWidth = Math.max(0, window.innerWidth - documentElement.clientWidth);
+    const widthBeforeLock = body.clientWidth;
     body.style.overflow = "hidden";
-    const remainingGutter = window.innerWidth - documentElement.clientWidth;
-    const pad = `${remainingGutter === 0 ? gutter : 0}px`;
+    const bodyPad = `${Math.max(0, body.clientWidth - widthBeforeLock)}px`;
 
-    body.style.paddingRight = pad;
-    documentElement.style.setProperty("--scroll-lock-pad", pad);
+    body.style.paddingRight = bodyPad;
+    documentElement.style.setProperty("--scroll-lock-pad", `${scrollbarWidth}px`);
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
