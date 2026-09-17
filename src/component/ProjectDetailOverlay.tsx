@@ -20,6 +20,10 @@ type ProjectDetailOverlayProps = {
 
 const formatIndex = (index: number) => String(index + 1).padStart(2, "0");
 
+const OVERLAY_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const OVERLAY_DURATION = 0.32;
+const DIALOG_DURATION = 0.35;
+
 export default function ProjectDetailOverlay({
   project,
   index,
@@ -29,8 +33,18 @@ export default function ProjectDetailOverlay({
   useEffect(() => {
     if (!project) return;
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const { body, documentElement } = document;
+    const previousBodyOverflow = body.style.overflow;
+    const previousBodyPadding = body.style.paddingRight;
+    const previousScrollLockPad = documentElement.style.getPropertyValue("--scroll-lock-pad");
+
+    const gutter = window.innerWidth - documentElement.clientWidth;
+    body.style.overflow = "hidden";
+    const remainingGutter = window.innerWidth - documentElement.clientWidth;
+    const pad = `${remainingGutter === 0 ? gutter : 0}px`;
+
+    body.style.paddingRight = pad;
+    documentElement.style.setProperty("--scroll-lock-pad", pad);
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -38,7 +52,13 @@ export default function ProjectDetailOverlay({
 
     window.addEventListener("keydown", onKeyDown);
     return () => {
-      document.body.style.overflow = previousOverflow;
+      body.style.overflow = previousBodyOverflow;
+      body.style.paddingRight = previousBodyPadding;
+      if (previousScrollLockPad) {
+        documentElement.style.setProperty("--scroll-lock-pad", previousScrollLockPad);
+      } else {
+        documentElement.style.removeProperty("--scroll-lock-pad");
+      }
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [project, onClose]);
@@ -52,9 +72,10 @@ export default function ProjectDetailOverlay({
           key="project-detail-overlay"
           className="fixed inset-0 z-[100] flex items-end justify-center md:items-center md:p-6"
           role="presentation"
-          initial={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
         >
           <motion.button
             type="button"
@@ -63,7 +84,7 @@ export default function ProjectDetailOverlay({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
             onClick={onClose}
           />
 
@@ -71,10 +92,10 @@ export default function ProjectDetailOverlay({
             role="dialog"
             aria-modal="true"
             aria-labelledby="project-detail-title"
-            initial={isDesktop ? { opacity: 0, scale: 0.94, y: 16 } : { y: "100%" }}
+            initial={isDesktop ? { opacity: 0, scale: 0.97, y: 12 } : { y: "100%" }}
             animate={isDesktop ? { opacity: 1, scale: 1, y: 0 } : { y: 0 }}
-            exit={isDesktop ? { opacity: 0, scale: 0.96, y: 12 } : { y: "100%" }}
-            transition={{ type: "spring", stiffness: 320, damping: 32 }}
+            exit={isDesktop ? { opacity: 0, scale: 0.97, y: 12 } : { y: "100%" }}
+            transition={{ duration: DIALOG_DURATION, ease: OVERLAY_EASE }}
             className="relative z-10 flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-t-2xl border border-[rgba(46,178,211,0.35)] bg-[#10131a] shadow-2xl md:rounded-2xl"
             onClick={(event) => event.stopPropagation()}
           >
