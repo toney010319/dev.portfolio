@@ -47,40 +47,46 @@ const Experience = () => {
           Professional <span className="text-[#2EB2D3]">Experience</span>
         </h2>
 
-        <div className="mx-auto max-w-3xl">
-          <ol className="relative space-y-12 border-l border-[#2EB2D3]/40 pl-8 md:pl-10">
+        <div className="relative mx-auto max-w-3xl">
+          <span
+            className="absolute top-1.5 bottom-0 left-[0.4375rem] w-px -translate-x-1/2 bg-[#2EB2D3]/40"
+            aria-hidden
+          />
+          <ol className="space-y-12">
             {experiences.map((job) => (
-              <li key={job.company} className="relative">
+              <li key={job.company} className="relative grid grid-cols-[0.875rem_1fr] gap-x-6 md:gap-x-8">
                 <span
-                  className="absolute -left-[2.35rem] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-[#2EB2D3] bg-[#10131a] md:-left-[2.85rem]"
+                  className="relative z-10 mt-1.5 h-3.5 w-3.5 rounded-full border-2 border-[#2EB2D3] bg-[#10131a]"
                   aria-hidden
                 />
 
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-                  <h2 className="subsection-title">{job.company}</h2>
-                  <p className="meta-text shrink-0 sm:text-right">{job.dates}</p>
-                </div>
+                <div>
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+                    <h2 className="subsection-title">{job.company}</h2>
+                    <p className="meta-text shrink-0 sm:text-right">{job.dates}</p>
+                  </div>
 
-                <p className="mt-1 font-display text-base font-semibold text-[#2EB2D3] md:text-lg">{job.role}</p>
-                <p className="meta-text mt-0.5">{job.location}</p>
+                  <p className="mt-1 font-display text-base font-semibold text-[#2EB2D3] md:text-lg">{job.role}</p>
+                  <p className="meta-text mt-0.5">{job.location}</p>
 
-                <ul className="body-copy mt-4 list-disc space-y-2 pl-5">
-                  {job.bullets.map((bullet) => (
-                    <li key={bullet} className="max-w-none pl-1">
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="body-copy mt-4 list-disc space-y-2 pl-5">
+                    {job.bullets.map((bullet) => (
+                      <li key={bullet} className="max-w-none pl-1">
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
 
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {job.tech.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-md border border-[#2EB2D3]/50 bg-[#2eb2d320] px-2.5 py-1 text-xs font-semibold text-[#EFF0F2] md:text-sm"
-                    >
-                      {item}
-                    </span>
-                  ))}
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {job.tech.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-md border border-[#2EB2D3]/50 bg-[#2eb2d320] px-2.5 py-1 text-xs font-semibold text-[#EFF0F2] md:text-sm"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </li>
             ))}
