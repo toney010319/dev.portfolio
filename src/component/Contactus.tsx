@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Mail, MessageCircle, Users } from "lucide-react";
+import { trackEvent } from "../lib/analytics";
 
 const channels = [
   {
@@ -61,6 +62,7 @@ const ContactUs = () => {
               <a
                 href={href}
                 {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                onClick={() => trackEvent("contact_click", { channel: label })}
                 className="flex items-center gap-4 rounded-xl border border-[rgba(46,178,211,0.35)] bg-[#0c1218]/80 px-4 py-3.5 transition-colors hover:border-[#2EB2D3] hover:bg-[#2eb2d315] sm:px-5 sm:py-4"
               >
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#2EB2D3]/50 bg-[#2eb2d320] text-[#2EB2D3]">
