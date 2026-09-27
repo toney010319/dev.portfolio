@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import NavTabs from "./animata/container/nav-tabs";
 import WorkButton from "./animata/container/work-button";
 import { Menu, X } from "lucide-react";
+import { trackEvent } from "../lib/analytics";
 
 const tabs = [
   { label: "Profile", sectionId: "profile" },
@@ -25,19 +26,23 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSectionId, setActiveSectionId] = useState(tabs[0].sectionId);
   const sectionRatios = useRef<Record<string, number>>({});
+  const trackedSections = useRef<Set<string>>(new Set());
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   useEffect(() => {
-    const sectionIds = tabs.map((tab) => tab.sectionId);
+    const navSectionIds = tabs.map((tab) => tab.sectionId);
+    const sectionIds = [...navSectionIds, "contact"];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           sectionRatios.current[entry.target.id] = entry.intersectionRatio;
         });
 
+        let mostVisibleNavId = navSectionIds[0];
+        let highestNavRatio = 0;
         let mostVisibleId = sectionIds[0];
         let highestRatio = 0;
 
@@ -47,10 +52,19 @@ const Navbar = () => {
             highestRatio = ratio;
             mostVisibleId = id;
           }
+          if (navSectionIds.includes(id) && ratio > highestNavRatio) {
+            highestNavRatio = ratio;
+            mostVisibleNavId = id;
+          }
         }
 
-        if (highestRatio > 0) {
-          setActiveSectionId(mostVisibleId);
+        if (highestNavRatio > 0) {
+          setActiveSectionId(mostVisibleNavId);
+        }
+
+        if (highestRatio > 0 && !trackedSections.current.has(mostVisibleId)) {
+          trackedSections.current.add(mostVisibleId);
+          trackEvent("section_view", { section_name: mostVisibleId });
         }
       },
       {
