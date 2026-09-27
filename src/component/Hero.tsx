@@ -2,6 +2,7 @@ import CycleText from "./animata/container/cylce-text";
 import WorkButton from "./animata/container/work-button";
 import photo from "../assets/test1.png";
 import { FacebookIcon, GithubIcon, LinkedinIcon } from "lucide-react";
+import { trackEvent } from "../lib/analytics";
 
 const Hero = () => {
   return (
@@ -23,6 +24,7 @@ const Hero = () => {
                 className="bg-[#2EB2D3] px-7 py-2 font-display text-lg"
                 href="/images/resume.pdf"
                 download={true}
+                onClick={() => trackEvent("resume_download")}
               />
               <div className="flex space-x-4">
                 <a
@@ -30,6 +32,7 @@ const Hero = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative"
+                  onClick={() => trackEvent("social_click", { network: "Facebook" })}
                 >
                   <FacebookIcon className="h-6 w-6 text-[#2EB2D3] duration-200 ease-in-out hover:scale-150 hover:cursor-pointer" />
                   <span className="absolute -top-10 left-1/2 -translate-x-1/2 transform whitespace-nowrap rounded bg-gray-800 px-2 py-1 text-sm text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -42,6 +45,7 @@ const Hero = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative"
+                  onClick={() => trackEvent("social_click", { network: "LinkedIn" })}
                 >
                   <LinkedinIcon className="h-6 w-6 text-[#2EB2D3] duration-200 ease-in-out hover:scale-150 hover:cursor-pointer" />
                   <span className="absolute -top-10 left-1/2 -translate-x-1/2 transform whitespace-nowrap rounded bg-gray-800 px-2 py-1 text-sm text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -54,6 +58,7 @@ const Hero = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative"
+                  onClick={() => trackEvent("social_click", { network: "GitHub" })}
                 >
                   <GithubIcon className="h-6 w-6 text-[#2EB2D3] duration-200 ease-in-out hover:scale-150 hover:cursor-pointer" />
                   <span className="absolute -top-10 left-1/2 -translate-x-1/2 transform whitespace-nowrap rounded bg-gray-800 px-2 py-1 text-sm text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
