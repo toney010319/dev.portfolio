@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
+import { trackEvent } from "../lib/analytics";
 
 export type ProjectItem = {
   title: string;
@@ -142,6 +143,7 @@ export default function ProjectDetailOverlay({
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent("project_visit", { project_name: project.title })}
                 className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-[#2EB2D3] px-5 py-2.5 font-display text-base font-semibold text-[#10131a] transition hover:bg-[#2095B3]"
               >
                 Visit project
