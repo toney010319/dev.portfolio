@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import "aos/dist/aos.css";
 import WorkButton from "./animata/container/work-button";
 import ProjectDetailOverlay, { type ProjectItem } from "./ProjectDetailOverlay";
+import { trackEvent } from "../lib/analytics";
 
 const projects: ProjectItem[] = [
   {
@@ -77,7 +78,10 @@ const Project = () => {
 
   const closeOverlay = useCallback(() => setSelectedIndex(null), []);
 
-  const openOverlay = (index: number) => setSelectedIndex(index);
+  const openOverlay = (index: number) => {
+    setSelectedIndex(index);
+    trackEvent("project_open", { project_name: projects[index].title });
+  };
 
   return (
     <section id="project" className="bg-[#10131a] py-16 md:py-20">
@@ -154,6 +158,7 @@ const Project = () => {
                       text="Open Project"
                       className="bg-[#2EB2D3] px-5 py-2 font-display text-base"
                       href={project.link}
+                      onClick={() => trackEvent("project_visit", { project_name: project.title })}
                     />
                   </div>
                 </div>
