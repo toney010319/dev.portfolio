@@ -13,9 +13,10 @@ const Hero = () => {
             <CycleText />
 
             <p className="body-copy mx-auto mt-6 text-center lg:mx-0 lg:text-left">
-              Web Developer and Frontend Engineer with 3+ years of experience building and maintaining production web
-              applications. Strong focus on React, Next.js, and TypeScript, with hands-on full-stack work across APIs,
-              databases, authentication, and business workflows.
+              Full-stack developer with 2+ years building SaaS products and high-performance websites. Built role-based
+              access control, Postgres Row Level Security, and Stripe billing for a real estate platform using Next.js,
+              TypeScript, and Supabase. Previously shipped sites scored 90%+ on Lighthouse and PageSpeed, with
+              Figma-to-code, tracking, and CRM integrations.
             </p>
 
             <div className="mb-10 mt-10 flex items-center justify-center gap-5 lg:justify-start">

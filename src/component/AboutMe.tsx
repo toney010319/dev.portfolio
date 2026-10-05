@@ -16,8 +16,6 @@ const techstack = [
   "NextJs",
   "Svelte",
   "SQLite",
-  "Ruby",
-  "Ruby-on-Rails",
   "PostgreSQL",
   "Figma",
   "Appwrite",
@@ -31,10 +29,6 @@ const techstack = [
   "RestApi",
   "MaterialUI",
   "SCSS",
-  "Wordpress",
-  "WooCommerce",
-  "Elementor",
-  "PHP",
   "Stripe",
   "Twilio",
   "Resend",
@@ -62,21 +56,7 @@ const frontEnd = [
   "Zod",
 ];
 
-const backEnd = [
-  "NodeJs",
-  "ExpressJs",
-  "MongoDB",
-  "SQLite",
-  "PostgreSQL",
-  "Ruby",
-  "Ruby-on-Rails",
-  "RestApi",
-  "Appwrite",
-  "Supabase",
-  "PHP",
-];
-
-const cmsPlatforms = ["Wordpress", "WooCommerce", "Elementor"];
+const backEnd = ["NodeJs", "ExpressJs", "MongoDB", "SQLite", "PostgreSQL", "RestApi", "Appwrite", "Supabase"];
 
 const toolsAndLibraries = [
   "Vite",
@@ -123,8 +103,6 @@ const AboutMe = () => {
         return backEnd;
       case 3:
         return toolsAndLibraries;
-      case 4:
-        return cmsPlatforms;
       default:
         return techstack;
     }
@@ -164,7 +142,7 @@ const AboutMe = () => {
             <ShiftTabs
               activeTab={activeTab}
               setActiveTab={setActiveTab}
-              items={["All", "Frontend", "Backend", "Tools", "CMS"]}
+              items={["All", "Frontend", "Backend", "Tools"]}
               onTabClick={(tab: number | null) => setActiveTab(tab)}
             />
             <div className="mt-4 grid grid-cols-2 gap-1.5 px-1 py-3 sm:grid-cols-3 sm:gap-2 sm:px-2 md:mt-6 md:grid-cols-3 md:gap-2.5 md:p-6 lg:grid-cols-4 lg:p-8">
@@ -173,11 +151,7 @@ const AboutMe = () => {
                   key={item}
                   className="inline-flex min-w-0 items-center justify-start gap-1.5 rounded-md border border-[#2EB2D3]/80 bg-[#2eb2d344] px-2 py-1.5 text-xs font-semibold text-[#EFF0F2] transition duration-300 ease-in-out hover:cursor-pointer hover:border-[#2EB2D3] hover:shadow-[0_0_0_1px_#2EB2D3] sm:gap-2 sm:px-2.5 sm:text-sm md:text-base"
                 >
-                  <TechIcon
-                    name={item}
-                    size={16}
-                    className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4 md:h-5 md:w-5"
-                  />
+                  <TechIcon name={item} size={16} className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4 md:h-5 md:w-5" />
                   <span className="truncate">{item}</span>
                 </span>
               ))}
