@@ -13,10 +13,11 @@ const Hero = () => {
             <CycleText />
 
             <p className="body-copy mx-auto mt-6 text-center lg:mx-0 lg:text-left">
-              Full-stack developer with 2+ years building SaaS products and high-performance websites. Built role-based
-              access control, Postgres Row Level Security, and Stripe billing for a real estate platform using Next.js,
-              TypeScript, and Supabase. Previously shipped sites scored 90%+ on Lighthouse and PageSpeed, with
-              Figma-to-code, tracking, and CRM integrations.
+              Full-Stack Web Developer with 3+ years of experience building responsive, production-ready websites and
+              SaaS applications. Experienced in React.js, Next.js, TypeScript, Node.js, Express.js, PostgreSQL, MongoDB,
+              Supabase, REST APIs, and third-party integrations. Strong background in developing end-to-end features,
+              implementing role-based access control, integrating payment systems, optimizing web performance, and
+              translating business requirements into scalable and maintainable applications.
             </p>
 
             <div className="mb-10 mt-10 flex items-center justify-center gap-5 lg:justify-start">
