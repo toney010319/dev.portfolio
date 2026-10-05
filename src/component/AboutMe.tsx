@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ShiftTabs from "./animata/container/shift-tabs";
+import TechIcon from "./TechIcon";
 
 const techstack = [
   "HTML",
@@ -35,6 +36,10 @@ const techstack = [
   "Elementor",
   "PHP",
   "Stripe",
+  "Twilio",
+  "Resend",
+  "Playwright",
+  "Jest",
 ];
 
 const frontEnd = [
@@ -84,6 +89,8 @@ const toolsAndLibraries = [
   "Klaviyo",
   "Twilio",
   "Resend",
+  "Playwright",
+  "Jest",
 ];
 
 const education = [
@@ -166,11 +173,9 @@ const AboutMe = () => {
                   key={item}
                   className="inline-flex min-w-0 items-center justify-start gap-1.5 rounded-md border border-[#2EB2D3]/80 bg-[#2eb2d344] px-2 py-1.5 text-xs font-semibold text-[#EFF0F2] transition duration-300 ease-in-out hover:cursor-pointer hover:border-[#2EB2D3] hover:shadow-[0_0_0_1px_#2EB2D3] sm:gap-2 sm:px-2.5 sm:text-sm md:text-base"
                 >
-                  <img
-                    src={`/images/${item}.svg`}
-                    width={16}
-                    height={16}
-                    alt=""
+                  <TechIcon
+                    name={item}
+                    size={16}
                     className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4 md:h-5 md:w-5"
                   />
                   <span className="truncate">{item}</span>

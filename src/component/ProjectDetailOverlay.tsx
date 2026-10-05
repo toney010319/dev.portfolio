@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 import { trackEvent } from "../lib/analytics";
+import TechIcon from "./TechIcon";
 
 export type ProjectItem = {
   title: string;
@@ -133,7 +134,7 @@ export default function ProjectDetailOverlay({
                     key={tech}
                     className="inline-flex items-center gap-1.5 rounded-full border border-[#2EB2D3]/50 bg-[#2eb2d320] px-2.5 py-1 text-xs font-semibold text-[#EFF0F2]"
                   >
-                    <img src={`/images/${tech}.svg`} alt="" width={14} height={14} className="shrink-0" />
+                    <TechIcon name={tech} size={14} className="shrink-0" />
                     {tech}
                   </span>
                 ))}

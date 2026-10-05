@@ -3,12 +3,13 @@ import "aos/dist/aos.css";
 import WorkButton from "./animata/container/work-button";
 import ProjectDetailOverlay, { type ProjectItem } from "./ProjectDetailOverlay";
 import { trackEvent } from "../lib/analytics";
+import TechIcon from "./TechIcon";
 
 const projects: ProjectItem[] = [
   {
     title: "CurbPage",
     description:
-      "A real estate platform that centralizes clients, transactions, documents, workflows, and communication into one system—helping agents and teammates centralize transactions and automate tasks while giving clients real-time transaction visibility.",
+      "A real estate platform that centralizes clients, transactions, documents, workflows, and communication into one system—helping agents and teammates centralize transactions and automate tasks while giving clients real-time transaction visibility. Uses Resend for email delivery, Twilio for OTP verification, Playwright for end-to-end testing, and Jest for unit testing.",
     image: "/images/curbpage.webp",
     link: "https://www.curbpage.com/",
     Technologies: [
@@ -24,6 +25,8 @@ const projects: ProjectItem[] = [
       "Twilio",
       "Resend",
       "Stripe",
+      "Playwright",
+      "Jest",
     ],
   },
   {
@@ -138,7 +141,7 @@ const Project = () => {
                         key={tech}
                         className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-[#2EB2D3]/50 bg-[#2eb2d318] px-2.5 py-1 text-xs font-semibold text-[#EFF0F2]"
                       >
-                        <img src={`/images/${tech}.svg`} alt="" width={14} height={14} className="shrink-0" />
+                        <TechIcon name={tech} size={14} className="shrink-0" />
                         <span className="truncate">{tech}</span>
                       </span>
                     ))}
