@@ -1,15 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
-import "aos/dist/aos.css";
-import WorkButton from "./animata/container/work-button";
+import { useCallback, useState } from "react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import ProjectDetailOverlay, { type ProjectItem } from "./ProjectDetailOverlay";
 import { trackEvent } from "../lib/analytics";
-import TechIcon from "./TechIcon";
-
 const projects: ProjectItem[] = [
   {
     title: "CurbPage",
     description:
-      "A real estate platform that centralizes clients, transactions, documents, workflows, and communication into one system—helping agents and teammates centralize transactions and automate tasks while giving clients real-time transaction visibility. Uses Resend for email delivery, Twilio for OTP verification, Playwright for end-to-end testing, and Jest for unit testing.",
+      "An AI-powered real estate SaaS platform that centralizes clients, transactions, documents, workflows, communication, and payments—helping real estate teams reduce manual work and give clients clearer transaction visibility.",
     image: "/images/curbpage.webp",
     link: "https://www.curbpage.com/",
     Technologies: [
@@ -25,6 +22,7 @@ const projects: ProjectItem[] = [
       "Twilio",
       "Resend",
       "Stripe",
+      "Calendly",
       "Playwright",
       "Jest",
     ],
@@ -32,26 +30,63 @@ const projects: ProjectItem[] = [
   {
     title: "Employee Portal",
     description:
-      "A full-stack HR and operations portal for time tracking, support ticketing, and HR requests, with admin access for managing workflows. Built with the MERN stack and TypeScript for a maintainable, API-driven business application.",
+      "A full-stack document and operations platform for time tracking, support tickets, and HR requests. I built authenticated, role-aware workflows with React Router, TypeScript, ShadCN, REST APIs, MongoDB, Express, React, and Node.js.",
     image: "/images/dms.jpg",
     link: "https://csv-portal-online.vercel.app/sign-in",
-    Technologies: ["MongoDB", "ExpressJs", "ReactJs", "NodeJs", "Tailwind", "Shadcn", "Typescript", "Vite"],
+    Technologies: [
+      "MongoDB",
+      "ExpressJs",
+      "ReactJs",
+      "NodeJs",
+      "Tailwind",
+      "Shadcn",
+      "Typescript",
+      "Vite",
+    ],
   },
   {
     title: "ESaverWatt",
     description:
-      "An e-commerce storefront where customers add products to cart, place multi-order purchases with subscription options, and complete checkout via PayPal or debit card. I converted Figma prototypes into responsive, mobile-first production UI.",
+      "A production e-commerce storefront where customers can browse products, manage their cart, choose subscription options, and complete purchases through PayPal or card payments.",
     image: "/images/ecommerce.jpg",
     link: "https://shop.esaverwatt.com",
-    Technologies: ["HTML", "Bootstrap", "CSS", "Jquery", ".NET", "Konnektive", "Gtag", "Klaviyo"],
+    Technologies: [
+      "HTML",
+      "Bootstrap",
+      "CSS",
+      "Jquery",
+      ".NET",
+      "Handlebars",
+      "Gulp",
+      "PayPal",
+      "Facebook Pixel",
+      "TikTok Pixel",
+      "Everflow",
+      "Konnektive",
+      "Sticky.io",
+    ],
   },
   {
     title: "CamHandy",
     description:
-      "An e-commerce storefront for CamHandy dash cameras where customers choose product bundles, add accessories to cart, and complete checkout. I converted Figma prototypes into a responsive, mobile-first production UI.",
+      "A production e-commerce storefront where customers can compare CamHandy dash-camera bundles, add accessories, and complete their purchase through a responsive checkout experience.",
     image: "/images/camhandy.png",
     link: "https://shop.trycamhandy.com/",
-    Technologies: ["HTML", "Bootstrap", "CSS", "Jquery", ".NET", "Konnektive", "Gtag", "Klaviyo"],
+    Technologies: [
+      "HTML",
+      "Bootstrap",
+      "CSS",
+      "Jquery",
+      ".NET",
+      "Handlebars",
+      "Gulp",
+      "PayPal",
+      "Facebook Pixel",
+      "TikTok Pixel",
+      "Everflow",
+      "Konnektive",
+      "Sticky.io",
+    ],
   },
   {
     title: "SNAPGRAM",
@@ -59,126 +94,131 @@ const projects: ProjectItem[] = [
       "A full-stack social web app with account creation, login, public posts, comments, and likes. Uses Appwrite as a serverless backend for authentication and data, with a Next.js and TypeScript frontend.",
     image: "/images/snapgram.webp",
     link: "https://snapgram-jsm-o7n4.vercel.app/",
-    Technologies: ["NextJs", "Tailwind", "TanstackQuery", "Typescript", "Appwrite", "Vite"],
+    Technologies: [
+      "NextJs",
+      "Tailwind",
+      "TanstackQuery",
+      "Typescript",
+      "Appwrite",
+      "Vite",
+    ],
   },
 ];
 
-const CARD_TECH_LIMIT = 4;
-
-const formatIndex = (index: number) => String(index + 1).padStart(2, "0");
-
-const Project = () => {
+const categories = [
+  "Real estate / SaaS",
+  "HR / Business systems",
+  "E-commerce",
+  "E-commerce",
+  "Social / Personal project",
+];
+export default function Project() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
-    const sync = () => setIsDesktop(mediaQuery.matches);
-    sync();
-    mediaQuery.addEventListener("change", sync);
-    return () => mediaQuery.removeEventListener("change", sync);
-  }, []);
-
+  const [showAll, setShowAll] = useState(false);
   const closeOverlay = useCallback(() => setSelectedIndex(null), []);
-
-  const openOverlay = (index: number) => {
-    setSelectedIndex(index);
-    trackEvent("project_open", { project_name: projects[index].title });
-  };
-
   return (
-    <section id="project" className="bg-[#10131a] py-16 md:py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="section-title mb-10 text-center md:mb-12">
-          Selected <span className="text-[#2EB2D3]">Projects</span>
-        </h2>
-        <div className="mx-auto grid max-w-6xl auto-rows-fr grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
-          {projects.map((project, index) => {
-            const visibleTech = project.Technologies.slice(0, CARD_TECH_LIMIT);
-            const remainingTech = project.Technologies.length - visibleTech.length;
-
-            return (
+    <section id="project" className="section-space work-section">
+      <div className="page-shell">
+        <div className="section-heading heading-split">
+          <div>
+            <p className="eyebrow">01 / Selected work</p>
+            <h2>
+              Built for the
+              <br />
+              <span>real world.</span>
+            </h2>
+          </div>
+          <p>
+            A selection of production platforms, business applications, and
+            storefronts. Thoughtful interfaces backed by practical engineering.
+          </p>
+        </div>
+        <div className="project-grid">
+          {projects
+            .slice(0, showAll ? projects.length : 3)
+            .map((project, index) => (
               <article
                 key={project.title}
-                data-aos="fade-up"
-                role="button"
-                tabIndex={0}
-                aria-label={`View details for ${project.title}`}
-                onClick={() => openOverlay(index)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    openOverlay(index);
-                  }
-                }}
-                className="group flex h-full min-w-0 cursor-pointer flex-col overflow-hidden rounded-2xl border-2 border-[rgba(46,178,211,0.45)] bg-[#0c1218] shadow-md transition-colors duration-300 ease-in-out hover:bg-[#2eb2d315] hover:shadow-[#2EB2D3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2EB2D3]"
+                className={`project-card ${index === 0 ? "featured-project" : ""}`}
               >
-                <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden">
+                <button
+                  className="project-preview"
+                  aria-label={`View details for ${project.title}`}
+                  onClick={() => {
+                    setSelectedIndex(index);
+                    trackEvent("project_open", { project_name: project.title });
+                  }}
+                >
                   <img
                     src={project.image}
-                    alt={`${project.title} application`}
-                    className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+                    alt={`${project.title} project preview`}
+                    loading="lazy"
                   />
-                </div>
-
-                <div className="flex flex-1 flex-col gap-3 p-5 text-left sm:p-6">
-                  <div className="flex items-start justify-between gap-3">
-                    <h2 className="font-display text-lg font-bold tracking-wide text-[#EFF0F2] sm:text-xl">
-                      {project.title}
-                    </h2>
-                    <span className="shrink-0 pt-1 font-display text-sm font-semibold text-[#2EB2D3]">
-                      {formatIndex(index)}
-                    </span>
+                  <span className="preview-arrow">
+                    <ArrowUpRight size={22} />
+                  </span>
+                </button>
+                <div className="project-copy">
+                  <div className="project-meta">
+                    <span>{categories[index]}</span>
+                    <span>0{index + 1}</span>
                   </div>
-
-                  <p className="line-clamp-2 text-sm leading-relaxed text-[#EFF0F2]/85 md:text-[0.95rem]">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 pt-1">
-                    {visibleTech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-[#2EB2D3]/50 bg-[#2eb2d318] px-2.5 py-1 text-xs font-semibold text-[#EFF0F2]"
-                      >
-                        <TechIcon name={tech} size={14} className="shrink-0" />
-                        <span className="truncate">{tech}</span>
-                      </span>
+                  <h3>{project.title}</h3>
+                  <p>{project.description.split(". ")[0]}.</p>
+                  <div className="tech-tags">
+                    {project.Technologies.slice(0, 4).map((tech) => (
+                      <span key={tech}>{tech}</span>
                     ))}
-                    {remainingTech > 0 && (
-                      <span className="inline-flex items-center rounded-full border border-[#2EB2D3]/40 px-2.5 py-1 text-xs font-semibold text-[#EFF0F2]/80">
-                        +{remainingTech}
-                      </span>
-                    )}
                   </div>
-
-                  <div
-                    className="mt-auto pt-4"
-                    onClick={(event) => event.stopPropagation()}
-                    onKeyDown={(event) => event.stopPropagation()}
-                  >
-                    <WorkButton
-                      text="Open Project"
-                      className="bg-[#2EB2D3] px-5 py-2 font-display text-base"
+                  <div className="project-actions">
+                    <button
+                      className="text-link"
+                      onClick={() => {
+                        setSelectedIndex(index);
+                        trackEvent("project_open", {
+                          project_name: project.title,
+                        });
+                      }}
+                    >
+                      Project details <ArrowUpRight size={16} />
+                    </button>
+                    <a
                       href={project.link}
-                      onClick={() => trackEvent("project_visit", { project_name: project.title })}
-                    />
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-link muted-link"
+                      onClick={() =>
+                        trackEvent("project_visit", {
+                          project_name: project.title,
+                        })
+                      }
+                    >
+                      Live site <ArrowUpRight size={16} />
+                    </a>
                   </div>
                 </div>
               </article>
-            );
-          })}
+            ))}
+        </div>
+        <div className="more-work">
+          <span>
+            {showAll ? "All five projects" : "Three selected projects"}
+          </span>
+          <button
+            className="secondary-button"
+            aria-expanded={showAll}
+            onClick={() => setShowAll(!showAll)}
+          >
+            {showAll ? "Show selected work" : "View all projects"}
+            <ArrowDown size={16} />
+          </button>
         </div>
       </div>
-
       <ProjectDetailOverlay
         project={selectedIndex === null ? null : projects[selectedIndex]}
         index={selectedIndex ?? 0}
-        isDesktop={isDesktop}
         onClose={closeOverlay}
       />
     </section>
   );
-};
-
-export default Project;
+}
