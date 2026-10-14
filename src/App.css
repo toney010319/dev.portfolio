@@ -377,6 +377,7 @@ a:focus-visible {
 .hero-intro {
   position: relative;
   z-index: 2;
+  min-width: 0;
 }
 .hero-intro .eyebrow {
   font-size: 9px;
@@ -1288,7 +1289,7 @@ a:focus-visible {
     display: none;
   }
   .hero-name {
-    font-size: clamp(29px, 8vw, 58px);
+    font-size: min(7.2vw, 54px);
     letter-spacing: -1.7px;
     white-space: normal;
   }
@@ -1299,7 +1300,7 @@ a:focus-visible {
     min-height: 0;
   }
   .hero-intro h2 {
-    font-size: 29px;
+    font-size: clamp(25px, 7vw, 29px);
     margin: 14px 0;
   }
   .hero-intro .eyebrow {
@@ -1504,6 +1505,11 @@ a:focus-visible {
     gap: 5px;
   }
   .contribution-list span { font-size: 14px; }
+}
+@media (max-width: 420px) {
+  .brand > span:last-child {
+    display: none;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   html {

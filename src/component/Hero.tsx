@@ -6,7 +6,7 @@ import {
   Linkedin,
   Mail,
 } from "lucide-react";
-import photo from "../assets/test1.png";
+import photo480 from "../assets/anthony-480.webp";
 import { trackEvent } from "../lib/analytics";
 
 const Hero = () => (
@@ -59,7 +59,7 @@ const Hero = () => (
           <div className="portrait-visual">
             <div className="portrait-orbit" aria-hidden="true" />
             <img
-              src={photo}
+              src={photo480}
               alt="Anthony Bautista"
               width="481"
               height="481"

@@ -41,8 +41,32 @@ function ga4Plugin(): Plugin {
   }
 }
 
+function inlineCssPlugin(): Plugin {
+  return {
+    name: "inline-css",
+    apply: "build",
+    enforce: "post",
+    generateBundle(_, bundle) {
+      const htmlAsset = bundle["index.html"]
+      if (!htmlAsset || htmlAsset.type !== "asset") return
+
+      let html = String(htmlAsset.source)
+      for (const [fileName, output] of Object.entries(bundle)) {
+        if (output.type !== "asset" || !fileName.endsWith(".css")) continue
+
+        const stylesheetPattern = new RegExp(
+          `<link rel="stylesheet"[^>]*href="/${fileName.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&")}"[^>]*>`,
+        )
+        html = html.replace(stylesheetPattern, `<style>${String(output.source)}</style>`)
+        delete bundle[fileName]
+      }
+      htmlAsset.source = html
+    },
+  }
+}
+
 export default defineConfig({
-  plugins: [react(), ga4Plugin()],
+  plugins: [react(), ga4Plugin(), inlineCssPlugin()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

@@ -7,7 +7,9 @@ const projects: ProjectItem[] = [
     title: "CurbPage",
     description:
       "An AI-powered real estate SaaS platform that centralizes clients, transactions, documents, workflows, communication, and payments—helping real estate teams reduce manual work and give clients clearer transaction visibility.",
-    image: "/images/curbpage.webp",
+    image: "/images/curbpage-1200.webp",
+    imageSrcSet:
+      "/images/curbpage-480.webp 480w, /images/curbpage-800.webp 800w, /images/curbpage-1200.webp 1200w",
     link: "https://www.curbpage.com/",
     Technologies: [
       "NextJs",
@@ -31,7 +33,9 @@ const projects: ProjectItem[] = [
     title: "Employee Portal",
     description:
       "A full-stack document and operations platform for time tracking, support tickets, and HR requests. I built authenticated, role-aware workflows with React Router, TypeScript, ShadCN, REST APIs, MongoDB, Express, React, and Node.js.",
-    image: "/images/dms.jpg",
+    image: "/images/dms-1200.webp",
+    imageSrcSet:
+      "/images/dms-480.webp 480w, /images/dms-800.webp 800w, /images/dms-1200.webp 1200w",
     link: "https://csv-portal-online.vercel.app/sign-in",
     Technologies: [
       "MongoDB",
@@ -48,7 +52,9 @@ const projects: ProjectItem[] = [
     title: "ESaverWatt",
     description:
       "A production e-commerce storefront where customers can browse products, manage their cart, choose subscription options, and complete purchases through PayPal or card payments.",
-    image: "/images/ecommerce.jpg",
+    image: "/images/ecommerce-1200.webp",
+    imageSrcSet:
+      "/images/ecommerce-480.webp 480w, /images/ecommerce-800.webp 800w, /images/ecommerce-1200.webp 1200w",
     link: "https://shop.esaverwatt.com",
     Technologies: [
       "HTML",
@@ -151,6 +157,8 @@ export default function Project() {
                 >
                   <img
                     src={project.image}
+                    srcSet={project.imageSrcSet}
+                    sizes="(max-width: 767px) calc(100vw - 68px), (max-width: 1240px) calc((100vw - 121px) / 2), 566px"
                     alt={`${project.title} project preview`}
                     loading="lazy"
                   />

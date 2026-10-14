@@ -6,6 +6,7 @@ export type ProjectItem = {
   title: string;
   description: string;
   image: string;
+  imageSrcSet?: string;
   link: string;
   Technologies: string[];
 };
@@ -95,6 +96,8 @@ export default function ProjectDetailOverlay({
         <img
           className="dialog-image"
           src={project.image}
+          srcSet={project.imageSrcSet}
+          sizes="(max-width: 767px) calc(100vw - 28px), 880px"
           alt={`${project.title} project preview`}
         />
         <div className="dialog-copy">
