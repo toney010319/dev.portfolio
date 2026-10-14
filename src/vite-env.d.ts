@@ -9,4 +9,5 @@ interface Gtag {
 interface Window {
   dataLayer?: unknown[];
   gtag?: Gtag;
+  googleAnalyticsLoaded?: boolean;
 }

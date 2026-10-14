@@ -9,14 +9,31 @@ function ga4Plugin(): Plugin {
     name: "ga4",
     apply: "build",
     transformIndexHtml(html) {
-      const snippet = `    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
+      const snippet = `    <!-- Load Google Analytics after the visitor interacts with the page. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      window.gtag = gtag;
 
-      gtag('config', '${GA_MEASUREMENT_ID}');
+      function loadGoogleAnalytics() {
+        if (window.googleAnalyticsLoaded) return;
+        window.googleAnalyticsLoaded = true;
+
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}';
+        document.head.appendChild(script);
+
+        gtag('js', new Date());
+        gtag('config', '${GA_MEASUREMENT_ID}');
+      }
+
+      ['pointerdown', 'keydown', 'touchstart', 'click'].forEach(function (eventName) {
+        window.addEventListener(eventName, loadGoogleAnalytics, {
+          once: true,
+          passive: true
+        });
+      });
     </script>
 `
       return html.replace("  </head>", `${snippet}  </head>`)
