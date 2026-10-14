@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 
 const MousePointer = () => {
   const dotRef = useRef<HTMLDivElement>(null);
@@ -46,11 +47,12 @@ const MousePointer = () => {
     };
   }, []);
 
-  return (
+  return createPortal(
     <div className="custom-pointer" aria-hidden="true">
       <div ref={ringRef} className="pointer-ring" />
       <div ref={dotRef} className="pointer-dot" />
-    </div>
+    </div>,
+    document.body,
   );
 };
 

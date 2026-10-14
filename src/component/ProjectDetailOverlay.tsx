@@ -10,11 +10,29 @@ export type ProjectItem = {
   Technologies: string[];
 };
 const contributions = [
-  "Integrations: Built Stripe subscription billing with custom plan logic and a webhook handler that updates profiles only after payment confirmation. Added a Calendly API integration that tracks meeting attendance inside the workflow system. Automation: Designed Blueprints, a real estate transaction workflow engine that calculates due dates from milestones and supports email automation and document configuration, reducing manual follow-up. Backend and security: Built middleware for Admin, Agent, Client, and Teammate roles with subscription-state guards, configured Supabase Row Level Security policies, and authored Drizzle schema migrations.",
-  "Built a full-stack portal with time tracking, support ticketing, HR requests, and admin workflows using the MERN stack and TypeScript.",
-  "Translated Figma designs into a responsive, mobile-first production storefront with shopping cart, subscription, and checkout flows. Optimized performance with WebP assets, minified code, Handlebars, and Gulp, achieving 90%+ scores in GTmetrix, PageSpeed Insights, and Lighthouse. Integrated PayPal, Facebook Pixel, TikTok Pixel, Everflow, Konnektive, and Sticky.io for payments, analytics, conversion tracking, and customer management.",
-  "Translated Figma designs into responsive product, bundle-selection, accessories, and checkout interfaces. Optimized performance with WebP assets, minified code, Handlebars, and Gulp, achieving 90%+ scores in GTmetrix, PageSpeed Insights, and Lighthouse. Integrated PayPal, Facebook Pixel, TikTok Pixel, Everflow, Konnektive, and Sticky.io for payments, analytics, conversion tracking, and customer management.",
-  "Built a social application with account creation, authentication, public posts, comments, and likes, using Appwrite for backend services.",
+  [
+    { label: "Integrations", text: "Built Stripe subscription billing with custom plan logic and a webhook handler that updates profiles only after payment confirmation. Integrated Calendly to track meeting attendance inside workflows." },
+    { label: "Automation", text: "Designed Blueprints, a transaction workflow engine that calculates milestone-based due dates and supports email automation and document configuration, reducing manual follow-up." },
+    { label: "Backend & security", text: "Built middleware and subscription-state guards for four user roles, configured Supabase Row Level Security policies, and authored Drizzle schema migrations." },
+  ],
+  [
+    { label: "Full-stack delivery", text: "Built time tracking, support ticketing, HR request, and administrative workflows using the MERN stack and TypeScript." },
+    { label: "Access control", text: "Implemented authenticated, role-aware routing and REST API integrations for secure departmental workflows." },
+  ],
+  [
+    { label: "Frontend delivery", text: "Translated Figma designs into a responsive, mobile-first storefront with cart, subscription, and checkout flows." },
+    { label: "Performance", text: "Optimized WebP assets and minified code with Handlebars and Gulp, achieving 90%+ scores in GTmetrix, PageSpeed Insights, and Lighthouse." },
+    { label: "Integrations", text: "Integrated PayPal, Facebook Pixel, TikTok Pixel, Everflow, Konnektive, and Sticky.io for payments, analytics, conversion tracking, and customer management." },
+  ],
+  [
+    { label: "Frontend delivery", text: "Translated Figma designs into responsive product, bundle-selection, accessories, and checkout interfaces." },
+    { label: "Performance", text: "Optimized WebP assets and minified code with Handlebars and Gulp, achieving 90%+ scores in GTmetrix, PageSpeed Insights, and Lighthouse." },
+    { label: "Integrations", text: "Integrated PayPal, Facebook Pixel, TikTok Pixel, Everflow, Konnektive, and Sticky.io for payments, analytics, conversion tracking, and customer management." },
+  ],
+  [
+    { label: "Product development", text: "Built account creation, authentication, public posts, comments, and likes using Next.js and TypeScript." },
+    { label: "Backend services", text: "Used Appwrite for authentication, data storage, and application services." },
+  ],
 ];
 export default function ProjectDetailOverlay({
   project,
@@ -82,9 +100,17 @@ export default function ProjectDetailOverlay({
         <div className="dialog-copy">
           <p className="eyebrow">Project / 0{index + 1}</p>
           <h2 id="project-detail-title">{project.title}</h2>
+          <h3>Project overview</h3>
           <p>{project.description}</p>
           <h3>My contribution</h3>
-          <p>{contributions[index]}</p>
+          <ul className="contribution-list">
+            {contributions[index].map((item) => (
+              <li key={item.label}>
+                <strong>{item.label}</strong>
+                <span>{item.text}</span>
+              </li>
+            ))}
+          </ul>
           <h3>Technology stack</h3>
           <div className="tech-tags">
             {project.Technologies.map((tech) => (

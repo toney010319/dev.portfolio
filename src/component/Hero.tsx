@@ -14,7 +14,7 @@ const Hero = () => (
     <div className="page-shell">
       <div className="hero-topline">
         <span className="eyebrow">
-          <span className="status-dot" /> Open to opportunities
+          <span className="status-dot" /> Open to frontend and full-stack roles
         </span>
         <span className="hero-location">
           Based in Cebu, Philippines · Working remotely
@@ -26,17 +26,17 @@ const Hero = () => (
       <div className="hero-grid">
         <div className="hero-intro">
           <p className="eyebrow">
-            3+ years building production web applications
+            React · Next.js · TypeScript
           </p>
           <h2>
-            Frontend engineering.
+            Production-ready frontend.
             <br />
-            Full-stack delivery.
+            Full-stack ownership.
           </h2>
           <p className="hero-description">
-            I build responsive React and Next.js products for SaaS, business
-            platforms, and e-commerce—with experience across APIs, databases,
-            authentication, payments, performance, and automated testing.
+            I turn product requirements into responsive SaaS and e-commerce
+            experiences—from secure workflows and payments to integrations,
+            performance optimization, and automated tests.
           </p>
           <div className="hero-actions">
             <a className="primary-button" href="#project">
@@ -114,7 +114,7 @@ const Hero = () => (
           <ArrowDown size={15} /> Scroll to explore
         </a>
         <ul aria-label="Core technologies">
-          {["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL"].map(
+          {["3+ years experience", "Production SaaS", "90%+ performance", "End-to-end delivery"].map(
             (tech) => (
               <li key={tech}>{tech}</li>
             ),

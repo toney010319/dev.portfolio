@@ -30,12 +30,13 @@ export default function Experience() {
         <div className="section-heading">
           <p className="eyebrow">03 / Experience</p>
           <h2>
-            Real teams.
+            Shipped in production.
             <br />
-            Real responsibility.
+            Owned end to end.
           </h2>
           <p>
-            Building and maintaining applications used in everyday business.
+            More than three years building, integrating, testing, and improving
+            applications used in day-to-day business operations.
           </p>
         </div>
         <div className="experience-list">

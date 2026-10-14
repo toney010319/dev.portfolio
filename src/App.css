@@ -18,7 +18,7 @@
   --ring: 189 89% 57%;
   --radius: 1rem;
   --ink: #f0f3f9;
-  --subtle: #a0adc4;
+  --subtle: #b4bfd2;
   --cyan: #32d2ee;
   --line: rgba(158, 179, 215, 0.16);
   --navy: #080e20;
@@ -1155,6 +1155,31 @@ a:focus-visible {
   font-size: 16px;
   line-height: 1.7;
 }
+.contribution-list {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.contribution-list li {
+  display: grid;
+  grid-template-columns: 145px minmax(0, 1fr);
+  gap: 18px;
+  padding: 15px 0;
+  border-top: 1px solid var(--line);
+}
+.contribution-list strong {
+  color: var(--cyan);
+  font: 600 11px/1.6 "Sora", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+.contribution-list span {
+  color: var(--subtle);
+  font-size: 15px;
+  line-height: 1.7;
+}
 .dialog-copy > .primary-button {
   margin-top: 25px;
 }
@@ -1256,7 +1281,7 @@ a:focus-visible {
     margin-bottom: 20px;
   }
   .hero-topline .eyebrow {
-    font-size: 8px;
+    font-size: 9px;
     letter-spacing: 1.3px;
   }
   .hero-location {
@@ -1278,7 +1303,7 @@ a:focus-visible {
     margin: 14px 0;
   }
   .hero-intro .eyebrow {
-    font-size: 8px;
+    font-size: 9px;
     letter-spacing: 1px;
   }
   .hero-description {
@@ -1474,6 +1499,11 @@ a:focus-visible {
   .dialog-copy > p:not(.eyebrow) {
     font-size: 14px;
   }
+  .contribution-list li {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+  .contribution-list span { font-size: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html {
