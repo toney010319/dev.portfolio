@@ -25,14 +25,15 @@ export default function AboutMe() {
             Bautista<span>.</span>
           </h2>
           <p>
-            Frontend Engineer with<br />
+            Frontend Engineer with
+            <br />
             Full-Stack Experience
           </p>
           <div className="about-location">
             <span className="status-dot" /> Cebu, Philippines · Remote-friendly
           </div>
           <a className="text-link" href="/images/resume.pdf" download>
-            Get my résumé <ArrowUpRight size={16} />
+            Get my resume <ArrowUpRight size={16} />
           </a>
         </div>
         <div className="about-content">
@@ -42,16 +43,14 @@ export default function AboutMe() {
             And real business needs.
           </h3>
           <p>
-            I’m a software engineer with 3+ years of experience building
-            production SaaS applications and e-commerce websites. I specialize
-            in React, Next.js, and TypeScript, with full-stack experience across
-            Node.js, REST APIs, PostgreSQL, MongoDB, and Supabase.
+            I’m a software engineer with 3+ years of experience building production SaaS applications and e-commerce
+            websites. I specialize in React, Next.js, and TypeScript, with full-stack experience across Node.js, REST
+            APIs, PostgreSQL, MongoDB, and Supabase.
           </p>
           <p>
-            I’ve delivered role-based access, subscription payments, responsive
-            interfaces, third-party integrations, performance improvements, and
-            automated tests. I value maintainable code, clear user flows, and
-            reliable delivery from requirement to production.
+            I’ve delivered role-based access, subscription payments, responsive interfaces, third-party integrations,
+            performance improvements, and automated tests. I value maintainable code, clear user flows, and reliable
+            delivery from requirement to production.
           </p>
           <div className="stack-list">
             {stacks.map((stack) => (
