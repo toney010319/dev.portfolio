@@ -37,6 +37,111 @@ body {
   color: var(--ink);
   font-family: "Source Sans 3", system-ui, sans-serif;
 }
+#root {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+}
+main,
+.site-footer {
+  position: relative;
+}
+.cosmic-background {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(50, 210, 238, 0.055), transparent 30%),
+    radial-gradient(circle at 78% 62%, rgba(74, 91, 190, 0.055), transparent 34%);
+}
+.particle-field,
+.shooting-star-field {
+  position: absolute;
+  inset: 0;
+}
+.cosmic-particle {
+  --particle-rotation: 0deg;
+  position: absolute;
+  left: var(--particle-x);
+  top: var(--particle-y);
+  width: var(--particle-size);
+  height: var(--particle-size);
+  border-radius: 50%;
+  overflow: visible;
+  background: #b9f4ff;
+  opacity: var(--particle-opacity);
+  box-shadow:
+    0 0 4px rgba(220, 250, 255, 0.9),
+    0 0 11px rgba(50, 210, 238, 0.7);
+  animation: particle-twinkle var(--particle-duration) ease-in-out var(--particle-delay) infinite;
+}
+.cosmic-particle::before,
+.cosmic-particle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 999px;
+  background: linear-gradient(transparent, rgba(224, 251, 255, 0.95), transparent);
+  transform: translate(-50%, -50%);
+}
+.cosmic-particle::before {
+  width: 1px;
+  height: calc(var(--particle-size) * 4);
+}
+.cosmic-particle::after {
+  width: calc(var(--particle-size) * 4);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(224, 251, 255, 0.9), transparent);
+}
+.cosmic-particle:nth-child(5n) { --particle-rotation: 45deg; }
+.cosmic-particle:nth-child(3n)::before { height: calc(var(--particle-size) * 5); }
+.cosmic-particle:nth-child(3n)::after { width: calc(var(--particle-size) * 5); }
+.cosmic-particle:nth-child(4n) {
+  background: #ffffff;
+  box-shadow:
+    0 0 4px rgba(255, 255, 255, 0.95),
+    0 0 9px rgba(141, 170, 255, 0.65);
+}
+.shooting-star {
+  position: absolute;
+  left: var(--star-x);
+  top: var(--star-y);
+  width: var(--star-length);
+  height: 1px;
+  border-radius: 999px;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, rgba(115, 229, 245, 0.18) 55%, rgba(220, 250, 255, 0.95));
+  transform: rotate(var(--star-angle));
+  transform-origin: right center;
+  filter: drop-shadow(0 0 4px rgba(50, 210, 238, 0.55));
+  animation: shooting-star-flight var(--star-duration) cubic-bezier(0.35, 0, 0.65, 1) var(--star-delay) infinite;
+}
+.shooting-star::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #e9fcff;
+  box-shadow: 0 0 10px rgba(115, 229, 245, 0.9);
+  transform: translateY(-50%);
+}
+@keyframes particle-twinkle {
+  0%, 100% { opacity: calc(var(--particle-opacity) * 0.58); transform: scale(0.72) rotate(var(--particle-rotation)); }
+  45% { opacity: var(--particle-opacity); transform: scale(1.28) rotate(var(--particle-rotation)); }
+  58% { opacity: calc(var(--particle-opacity) * 0.84); transform: scale(1.05) rotate(var(--particle-rotation)); }
+}
+@keyframes shooting-star-flight {
+  0%, 62% { opacity: 0; transform: translate3d(-18vw, -12vh, 0) rotate(var(--star-angle)); }
+  66% { opacity: 0.9; }
+  82% { opacity: 0.75; }
+  100% { opacity: 0; transform: translate3d(82vw, 58vh, 0) rotate(var(--star-angle)); }
+}
 button,
 a {
   -webkit-tap-highlight-color: transparent;
@@ -59,6 +164,8 @@ a:focus-visible {
   color: #080e20;
 }
 .page-shell {
+  position: relative;
+  z-index: 2;
   width: min(1180px, calc(100% - 96px));
   margin-inline: auto;
 }
@@ -218,7 +325,7 @@ a:focus-visible {
       rgba(66, 65, 156, 0.18),
       transparent 56%
     ),
-    var(--navy);
+    rgba(8, 14, 32, 0.82);
 }
 .hero-section::before {
   content: "";
@@ -797,7 +904,7 @@ a:focus-visible {
   color: var(--cyan);
 }
 .experience-section {
-  background: #0b1225;
+  background: rgba(11, 18, 37, 0.86);
 }
 .experience-list {
   margin-top: 45px;
@@ -927,7 +1034,7 @@ a:focus-visible {
       rgba(20, 104, 127, 0.12),
       transparent 65%
     ),
-    #0b1225;
+    rgba(11, 18, 37, 0.88);
 }
 .contact-layout {
   display: grid;
@@ -1094,6 +1201,8 @@ a:focus-visible {
   .language-list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 36px; }
 }
 @media (max-width: 767px) {
+  .cosmic-particle:nth-child(n + 41) { display: none; }
+  .shooting-star:nth-child(n + 4) { display: none; }
   .page-shell {
     width: calc(100% - 40px);
   }
@@ -1376,4 +1485,6 @@ a:focus-visible {
     animation: none !important;
     transition: none !important;
   }
+  .shooting-star { display: none; }
+  .cosmic-particle { opacity: calc(var(--particle-opacity) * 0.6); }
 }

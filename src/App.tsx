@@ -2,6 +2,7 @@ import "./App.css";
 import "./index.css";
 import AboutMe from "./component/AboutMe";
 import ContactUs from "./component/Contactus";
+import CosmicBackground from "./component/CosmicBackground";
 import Experience from "./component/Experience";
 import Footer from "./component/Footer";
 import Hero from "./component/Hero";
@@ -13,6 +14,7 @@ import Services from "./component/Services";
 export default function App() {
   return (
     <>
+      <CosmicBackground />
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
