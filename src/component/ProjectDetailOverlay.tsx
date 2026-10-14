@@ -1,10 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 import { trackEvent } from "../lib/analytics";
-import TechIcon from "./TechIcon";
-
 export type ProjectItem = {
   title: string;
   description: string;
@@ -12,149 +9,102 @@ export type ProjectItem = {
   link: string;
   Technologies: string[];
 };
-
-type ProjectDetailOverlayProps = {
-  project: ProjectItem | null;
-  index: number;
-  isDesktop: boolean;
-  onClose: () => void;
-};
-
-const formatIndex = (index: number) => String(index + 1).padStart(2, "0");
-
-const OVERLAY_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-const OVERLAY_DURATION = 0.32;
-const DIALOG_DURATION = 0.35;
-
+const contributions = [
+  "Integrations: Built Stripe subscription billing with custom plan logic and a webhook handler that updates profiles only after payment confirmation. Added a Calendly API integration that tracks meeting attendance inside the workflow system. Automation: Designed Blueprints, a real estate transaction workflow engine that calculates due dates from milestones and supports email automation and document configuration, reducing manual follow-up. Backend and security: Built middleware for Admin, Agent, Client, and Teammate roles with subscription-state guards, configured Supabase Row Level Security policies, and authored Drizzle schema migrations.",
+  "Built a full-stack portal with time tracking, support ticketing, HR requests, and admin workflows using the MERN stack and TypeScript.",
+  "Translated Figma designs into a responsive, mobile-first production storefront with shopping cart, subscription, and checkout flows. Optimized performance with WebP assets, minified code, Handlebars, and Gulp, achieving 90%+ scores in GTmetrix, PageSpeed Insights, and Lighthouse. Integrated PayPal, Facebook Pixel, TikTok Pixel, Everflow, Konnektive, and Sticky.io for payments, analytics, conversion tracking, and customer management.",
+  "Translated Figma designs into responsive product, bundle-selection, accessories, and checkout interfaces. Optimized performance with WebP assets, minified code, Handlebars, and Gulp, achieving 90%+ scores in GTmetrix, PageSpeed Insights, and Lighthouse. Integrated PayPal, Facebook Pixel, TikTok Pixel, Everflow, Konnektive, and Sticky.io for payments, analytics, conversion tracking, and customer management.",
+  "Built a social application with account creation, authentication, public posts, comments, and likes, using Appwrite for backend services.",
+];
 export default function ProjectDetailOverlay({
   project,
   index,
-  isDesktop,
   onClose,
-}: ProjectDetailOverlayProps) {
+}: {
+  project: ProjectItem | null;
+  index: number;
+  onClose: () => void;
+}) {
+  const dialog = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!project) return;
-
-    const { body, documentElement } = document;
-    const previousBodyOverflow = body.style.overflow;
-    const previousBodyPadding = body.style.paddingRight;
-    const previousScrollLockPad = documentElement.style.getPropertyValue("--scroll-lock-pad");
-
-    const scrollbarWidth = Math.max(0, window.innerWidth - documentElement.clientWidth);
-    const widthBeforeLock = body.clientWidth;
-    body.style.overflow = "hidden";
-    const bodyPad = `${Math.max(0, body.clientWidth - widthBeforeLock)}px`;
-
-    body.style.paddingRight = bodyPad;
-    documentElement.style.setProperty("--scroll-lock-pad", `${scrollbarWidth}px`);
-
-    const onKeyDown = (event: KeyboardEvent) => {
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialog.current?.querySelector<HTMLButtonElement>("button")?.focus();
+    const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => {
-      body.style.overflow = previousBodyOverflow;
-      body.style.paddingRight = previousBodyPadding;
-      if (previousScrollLockPad) {
-        documentElement.style.setProperty("--scroll-lock-pad", previousScrollLockPad);
-      } else {
-        documentElement.style.removeProperty("--scroll-lock-pad");
+      if (event.key === "Tab") {
+        const focusable =
+          dialog.current?.querySelectorAll<HTMLElement>("button,a[href]");
+        if (!focusable?.length) return;
+        const first = focusable[0],
+          last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
-      window.removeEventListener("keydown", onKeyDown);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKey);
+      previousFocus?.focus();
     };
   }, [project, onClose]);
-
-  if (typeof document === "undefined") return null;
-
+  if (!project) return null;
   return createPortal(
-    <AnimatePresence>
-      {project && (
-        <motion.div
-          key="project-detail-overlay"
-          className="fixed inset-0 z-[100] flex items-end justify-center md:items-center md:p-6"
-          role="presentation"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
+    <div className="project-overlay" onClick={onClose}>
+      <div
+        ref={dialog}
+        className="project-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-detail-title"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          className="dialog-close"
+          onClick={onClose}
+          aria-label="Close project details"
         >
-          <motion.button
-            type="button"
-            aria-label="Close project details"
-            className="absolute inset-0 bg-[#0c0e14]/70 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
-            onClick={onClose}
-          />
-
-          <motion.div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="project-detail-title"
-            initial={isDesktop ? { opacity: 0, scale: 0.97, y: 12 } : { y: "100%" }}
-            animate={isDesktop ? { opacity: 1, scale: 1, y: 0 } : { y: 0 }}
-            exit={isDesktop ? { opacity: 0, scale: 0.97, y: 12 } : { y: "100%" }}
-            transition={{ duration: DIALOG_DURATION, ease: OVERLAY_EASE }}
-            className="relative z-10 flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-t-2xl border border-[rgba(46,178,211,0.35)] bg-[#10131a] shadow-2xl md:rounded-2xl"
-            onClick={(event) => event.stopPropagation()}
+          <X size={22} />
+        </button>
+        <img
+          className="dialog-image"
+          src={project.image}
+          alt={`${project.title} project preview`}
+        />
+        <div className="dialog-copy">
+          <p className="eyebrow">Project / 0{index + 1}</p>
+          <h2 id="project-detail-title">{project.title}</h2>
+          <p>{project.description}</p>
+          <h3>My contribution</h3>
+          <p>{contributions[index]}</p>
+          <h3>Technology stack</h3>
+          <div className="tech-tags">
+            {project.Technologies.map((tech) => (
+              <span key={tech}>{tech}</span>
+            ))}
+          </div>
+          <a
+            className="primary-button"
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() =>
+              trackEvent("project_visit", { project_name: project.title })
+            }
           >
-            <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden">
-              <img
-                src={project.image}
-                alt={`${project.title} application`}
-                className="h-full w-full object-cover"
-              />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#10131a] to-transparent" />
-              <button
-                type="button"
-                onClick={onClose}
-                className="absolute right-3 top-3 rounded-md border border-white/20 bg-[#10131a]/70 p-2 text-[#EFF0F2] backdrop-blur transition hover:bg-[#10131a]/90"
-                aria-label="Close"
-              >
-                <X size={18} />
-              </button>
-            </div>
-
-            <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-5 sm:p-6">
-              <div className="flex items-start justify-between gap-4">
-                <h2 id="project-detail-title" className="font-display text-2xl font-bold text-[#EFF0F2]">
-                  {project.title}
-                </h2>
-                <span className="shrink-0 font-display text-sm font-semibold text-[#2EB2D3]">{formatIndex(index)}</span>
-              </div>
-
-              <p className="text-sm leading-relaxed text-[#EFF0F2]/90 md:text-base">{project.description}</p>
-
-              <div className="flex flex-wrap gap-2">
-                {project.Technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-[#2EB2D3]/50 bg-[#2eb2d320] px-2.5 py-1 text-xs font-semibold text-[#EFF0F2]"
-                  >
-                    <TechIcon name={tech} size={14} className="shrink-0" />
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackEvent("project_visit", { project_name: project.title })}
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-[#2EB2D3] px-5 py-2.5 font-display text-base font-semibold text-[#10131a] transition hover:bg-[#2095B3]"
-              >
-                Visit project
-                <ArrowUpRight size={18} aria-hidden />
-              </a>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>,
-    document.body
+            Visit live project <ArrowUpRight size={18} />
+          </a>
+        </div>
+      </div>
+    </div>,
+    document.body,
   );
 }
